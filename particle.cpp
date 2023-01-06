@@ -1,6 +1,7 @@
 #include "particle.h"
 #include <SFML/Graphics.hpp>
 
+#define WINDOWSIZE 2560, 1440
 particle::particle() 
 {
 	mass = 0.0f;
@@ -19,6 +20,8 @@ particle::particle(double Xp, double Yp, double Zp, double Xv, double Yv, double
 	this->mass = mass;
 	this->temp = temp;
 	this->radius = radius;
+	this->circle.setRadius(radius);
+	this->setCircleCenterOrigin(WINDOWSIZE);
 }
 
 
@@ -170,8 +173,28 @@ double particle::getZacceleartion() const
 {
 	return this->acceleration[2];
 }
+sf::Vector2f particle::transformPoint(float x, float y, float windowWidth, float windowHeight)
+{
+	// Invert the y-coordinate, since the y-axis in a Cartesian system increases upwards
+	// but the y-axis in an SFML system increases downwards
+	y = -y;
 
+	// Scale the x and y coordinates to fit within the size of the window
+	x = (x / 2.0f) * windowWidth;
+	y = (y / 2.0f) * windowHeight;
 
+	// Translate the origin from the center of the window to the top-left corner
+	x += (windowWidth / 2.0f);
+	y += (windowHeight / 2.0f);
+
+	return sf::Vector2f(x, y);
+}
+void particle::setCircleCenterOrigin(double windowX, double windowY) 
+{
+	circle.setOrigin(getRadius(),getRadius());
+	circle.setPosition(transformPoint(getXposition(), getYposition(), windowX, windowY));
+	circle.setFillColor(sf::Color::Blue);
+}
 
 
 

@@ -5,64 +5,77 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "particleVectors.h"
 
-sf::Vector2f transformPoint(float x, float y, float windowWidth, float windowHeight)
-{
-    // Invert the y-coordinate, since the y-axis in a Cartesian system increases upwards
-    // but the y-axis in an SFML system increases downwards
-    y = -y;
 
-    // Scale the x and y coordinates to fit within the size of the window
-    x = (x / 2.0f) * windowWidth;
-    y = (y / 2.0f) * windowHeight;
-
-    // Translate the origin from the center of the window to the top-left corner
-    x += (windowWidth / 2.0f);
-    y += (windowHeight / 2.0f);
-
-    return sf::Vector2f(x, y);
-}
 int main()
 {
+    particleVectors Particles;
 
-    particle p1(.64,0.65 , 0, -0.0004, -0.0001, 0, 0, 0, 0, 3200, 0, 10);
-    particle p2(-0.77, 0.5, 0, 0, 0.0001, -0.0001, 0, 0, 0, 4000, 0, 10);
+    particle p1(.64, 0.65, 0, -0.0004, -0.0001, 0, 0, 0, 0, 300, 0, 50);
+    particle p2(-0.77, 0.5, 0, 0, 0.00, 0.000, 0, 0, 0, 150000.0, 0, 350);
 
-    particle p3(0, -0.7, 0, 0, 0.0000034, 0, 0, 0, 0, 33400, 0, 100);
+    particle p3(0, -0.7, 0, 0, 0.0000034, 0, 0, 0, 0, 15, 0, 200);
+    particle p4(1, 3, 0, 0, 0.0000034, 0, 0, 0, 0, 330, 0, 103);
+    particle p5(0, 0.7, 0, 0, 0.0000034, 0, 0, 0, 0, 330, 0, 110);
+    particle p6(1, -0.7, 0, 0, 0.0000034, 0, 0, 0, 0, 15, 0, 101);
+    particle p7(1.7, 0, 0, 1, 1, 0, 0, 0, 0, 330, 0, 110);
+    particle p8(2.4, 0, 0, -1, -1, 0, 0, 0, 0, 15, 0, 101);
+    particle p9(3.1, 0, 0, 2, -1, 0, 0, 0, 0, 330, 0, 110);
+    particle p10(3.8, 0, 0, 0, 3, 0, 0, 0, 0, 15, 0, 101);
+    particle p11(4.5, 0, 0, 0, 4, 0, 0, 0, 0, 330, 0, 110);
+    particle p12(5.2, 0, 0, 1, 1, 0, 0, 0, 0, 300, 0, 101);
+    particle p13(5.9, 0, 0, 2, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p14(6.6, 0, 0, 3,6, 0, 0, 0, 0, 15, 0, 101);
+    particle p15(7.3, 0, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p16(8.0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 101);
+    particle p17(8.7, 0, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p18(8.9, -1, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p19(9.1, -9, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p20(9.3, -7, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p21(9.5, 1, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p22(-9.8, 5, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
 
-    // Define the properties of the circle
-    float radius = 10.0f;
-    float centerX = p1.getXposition();
-    float centerY = p1.getYposition();
 
-    float centerXp2 = p2.getXposition();
-    float centerYp2 = p2.getYposition();
+    //
+    //   
+    particle p23(-8.7, 4, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p24(-8.5, 3, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p25(-8.4, 2, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+    particle p26(-8.2, 2, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
+   
+    particle p27(-10, 7, 0, 0, 0, 0, 0, 0, 0, 330, 0, 110);
 
-    float centerXp3 = p3.getXposition();
-    float centerYp3 = p3.getYposition();
-    // Transform the center point of the circle from a Cartesian coordinate system to an SFML coordinate system
-    sf::Vector2f center = transformPoint(centerX, centerY, 2560.0f, 1080.0f);
-    sf::Vector2f centerp2 = transformPoint(centerXp2, centerYp2, 2560.0f, 1080.0f);
-    sf::Vector2f centerp3 = transformPoint(centerXp3, centerYp3, 2560.0f, 1080.0f);
-
-    // Create the circle shape
-    sf::CircleShape circle(radius);
-    circle.setOrigin(radius, radius);
-    circle.setPosition(center);
-    circle.setFillColor(sf::Color::Yellow);
-
-    sf::CircleShape circle2(radius);
-    circle2.setOrigin(radius, radius);
-    circle2.setPosition(centerp2);
-    circle2.setFillColor(sf::Color::Red);
-    
-    sf::CircleShape circle3(radius*1.5);
-    circle3.setOrigin(radius*1.5, radius*1.5);
-    circle3.setPosition(centerp3);
-    circle3.setFillColor(sf::Color::Magenta);
-
-    int a = 0;
-
+    Particles.particles.push_back(p1);
+    Particles.particles.push_back(p2);
+    Particles.particles.push_back(p3);
+    Particles.particles.push_back(p4);
+    Particles.particles.push_back(p5);
+    Particles.particles.push_back(p6);
+    //Particles.particles.push_back(p7);
+    //Particles.particles.push_back(p8);
+    //Particles.particles.push_back(p9);
+    //Particles.particles.push_back(p10);
+    //Particles.particles.push_back(p11);
+    //Particles.particles.push_back(p12);
+    //Particles.particles.push_back(p13);
+    //Particles.particles.push_back(p14);
+    //Particles.particles.push_back(p15);
+    //Particles.particles.push_back(p16);
+    //Particles.particles.push_back(p17);
+    //Particles.particles.push_back(p18);
+    //Particles.particles.push_back(p19);
+    //Particles.particles.push_back(p20);
+    //Particles.particles.push_back(p21);
+    //Particles.particles.push_back(p22);
+    //Particles.particles.push_back(p23);
+    //Particles.particles.push_back(p24);
+    //Particles.particles.push_back(p25);
+    //Particles.particles.push_back(p26);
+    //p27.circle.setFillColor(sf::Color::Red);
+    //Particles.particles.push_back(p27);
+    sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(2560 * 10, 1440 * 10));
+    view.setCenter(sf::Vector2f(1280.0f, 720.0f));
     sf::Font font;
     if (!font.loadFromFile("LiberationSans.ttf"))
     {
@@ -73,13 +86,15 @@ int main()
 
     
 
-    sf::Text text;
-    text.setFont(font);
-    text.setCharacterSize(24);
-    text.setFillColor(sf::Color::White);
-    text.setPosition(10, 10);
+    //sf::Text text;
+    //text.setFont(font);
+    //text.setCharacterSize(24);
+    //text.setFillColor(sf::Color::White);
+    ////text.setPosition(10, 10);
 
     sf::RenderWindow window(sf::VideoMode(2560, 1440), "Stuff");
+  
+    
     while (window.isOpen())
     {
         sf::Event event;
@@ -89,50 +104,70 @@ int main()
                 window.close();
         }  
 
-        std::string fpsString = "Mass: " + std::to_string(p3.getMass());
-        text.setString(fpsString);
         
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            p3.setMass(p3.getMass() + 1000);
-            std::cout << "Mass is " << p3.getMass() << '\n';
+            Particles.particles.at(1).setXposition(Particles.particles.at(1).getXposition() - 0.01);
+          //  Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() + 5000);
+           //std::cout << "Mass is " << Particles.particles.at(1).getMass() << '\n';
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            p3.setMass(p3.getMass() - 1000);
-            std::cout << "Mass is " << p3.getMass() << "\n";
+            Particles.particles.at(1).setXposition(Particles.particles.at(1).getXposition() + 0.01);
+           // Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() - 5000);
+            //std::cout << "Mass is " << Particles.particles.at(1).getMass() << "\n";
         }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            Particles.particles.at(1).setYposition(Particles.particles.at(1).getYposition() + 0.01);
+            //Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() - 5000);
+             //std::cout << "Mass is " << Particles.particles.at(1).getMass() << "\n";
+           
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            Particles.particles.at(1).setYposition(Particles.particles.at(1).getYposition() - 0.01);
+            //Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() - 5000);
+             //std::cout << "Mass is " << Particles.particles.at(1).getMass() << "\n";
+       }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        {
+           // Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() + 50);
+            Particles.particles.at(1).circle.setRadius(Particles.particles.at(1).circle.getRadius() + 0.2);
+            Particles.particles.at(1).setMass(Particles.particles.at(1).getMass()*1.01);
+            std::cout << "Mass is " << Particles.particles.at(1).getMass() << '\n';
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        {
+            Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() /1.01);
+            Particles.particles.at(1).circle.setRadius(Particles.particles.at(1).circle.getRadius() - 0.2);
+            //Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() + 5000);
+            std::cout << "Mass is " << Particles.particles.at(1).getMass() << '\n';
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+        {
+            Particles.particles.at(1).setVelocity(0, 0, 0);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+        {
+            for (int i = 0; i < Particles.particles.size(); i++) {
+                Particles.particles.at(i).setPosition(0, 0, 0);
+          }
+        }
+
         window.clear();
-          
-        window.draw(circle);
-        window.draw(circle2);
-        window.draw(circle3);
-        window.draw(text);
+               window.setView(view);
+               Particles.drawAllParticles(window);
+        
+            
+        Particles.updateGravityOnParticles();
 
+       /* std::cout << "This is in main " << Particles.particles.at(0).getXposition() << "   " << Particles.particles.at(0).getYposition() << std::endl;
+        std::cout << "This is in main2 " << Particles.particles.at(1).getXposition() << "   " << Particles.particles.at(1).getYposition() << std::endl;*/
 
-        window.display();
-        Logic::changeAccleration(p1, Logic::getForceFromGravity_X(p1, p2) / p1.getMass(), Logic::getForceFromGravity_Y(p1, p2) / p1.getMass(), 0);
-        Logic::changeAccleration(p1, (Logic::getForceFromGravity_X(p1, p3) / p1.getMass()) + p1.getXacceleration(), (Logic::getForceFromGravity_Y(p1, p3) / p1.getMass()) + p1.getYacceleration(),0);
+      
+      
 
-
-
-        Logic::changeAccleration(p2, Logic::getForceFromGravity_X(p2, p1) / p2.getMass(), Logic::getForceFromGravity_Y(p2, p1) / p2.getMass(), 0);
-        Logic::changeAccleration(p2, Logic::getForceFromGravity_X(p2, p3) / p2.getMass() + p2.getXacceleration(), Logic::getForceFromGravity_Y(p2, p3) / p2.getMass() + p2.getYacceleration(), 0);
-
-        Logic::changeAccleration(p3, Logic::getForceFromGravity_X(p3, p1) / p3.getMass(), Logic::getForceFromGravity_Y(p3, p1) / p2.getMass(), 0);
-        Logic::changeAccleration(p3, Logic::getForceFromGravity_X(p3, p2) / p3.getMass() + p3.getXacceleration(), Logic::getForceFromGravity_Y(p3, p2) / p3.getMass() + p3.getYacceleration(), 0);
-
-
-
-        circle.setPosition(transformPoint(p1.getXposition(), p1.getYposition(), 2560, 1080));
-        circle2.setPosition(transformPoint(p2.getXposition(), p2.getYposition(), 2560, 1080));
-        circle3.setPosition(transformPoint(p3.getXposition(), p3.getYposition(), 2560, 1080));
-        Logic::updatePosition(p1);
-        Logic::updatePosition(p2); 
-        Logic::updatePosition(p3);
-        Logic::updateVelocity(p1);
-        Logic::updateVelocity(p2);
-        Logic::updatePosition(p3);
         //std::cout << "Acceleration of particle 1 " << p1.getXacceleration() << "  " << p1.getYacceleration() << std::endl;
        // std::cout << "Acceleration of particle 2 " << p2.getXacceleration() << "  " << p2.getYacceleration() << std::endl;
       

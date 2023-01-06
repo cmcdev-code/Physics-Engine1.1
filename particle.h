@@ -56,6 +56,13 @@ class particle {
 		double getYacceleration() const;
 		double getZacceleartion() const;
 
+		sf::Vector2f transformPoint(float x, float y, float windowWidth, float windowHeight);
+
+
+		void setCircleCenterOrigin(double windowX, double windowY);
+		sf::CircleShape circle;
+
+
 
 	private:
 		long double mass;

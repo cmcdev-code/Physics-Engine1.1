@@ -4,7 +4,10 @@
 
 #define gravity 0.000000000066743
 
-
+double debug(double a) {
+	//std::cout << a << std::endl;
+	return a;
+}
 double Logic::getDistanceBetweenParticle(particle& P1, particle& P2) 
 {
 	return std::pow(
@@ -21,20 +24,20 @@ double Logic::getForceFromGravity(particle& P1, particle& P2)
 double Logic::getForceFromGravity_X(particle& P1, particle& P2) 
 {
 	//calculating unit vector just for the x 
-	double MagnitudeOFVector = getDistanceBetweenParticle(P1, P2);
-	return (getForceFromGravity(P1, P2) * (P1.getXposition() - P2.getXposition())) /(MagnitudeOFVector * MagnitudeOFVector);
+	double MagnitudeOFVector = debug(getDistanceBetweenParticle(P1, P2));
+	return debug(getForceFromGravity(P1, P2) * (P1.getXposition() - P2.getXposition())) /(MagnitudeOFVector * MagnitudeOFVector);
 }
 double Logic::getForceFromGravity_Y(particle& P1, particle& P2) 
 {
-	double MagnitudeOFVector = getDistanceBetweenParticle(P1, P2);
+	double MagnitudeOFVector = debug(getDistanceBetweenParticle(P1, P2));
 
-	return (getForceFromGravity(P1, P2) * (P1.getYposition() - P2.getYposition())) / (MagnitudeOFVector * MagnitudeOFVector);
+	return debug(getForceFromGravity(P1, P2) * (P1.getYposition() - P2.getYposition())) / (MagnitudeOFVector * MagnitudeOFVector);
 }
 double Logic::getForceFromGravity_Z(particle& P1, particle& P2) 
 {
-	double MagnitudeOFVector = getDistanceBetweenParticle(P1, P2);
+	double MagnitudeOFVector = debug(getDistanceBetweenParticle(P1, P2));
 
-	return (getForceFromGravity(P1, P2) * (P1.getZposition() - P2.getZposition())) / (MagnitudeOFVector * MagnitudeOFVector);
+	return debug(getForceFromGravity(P1, P2) * (P1.getZposition() - P2.getZposition())) / (MagnitudeOFVector * MagnitudeOFVector);
 }
 
 
@@ -54,18 +57,18 @@ void Logic::updatePosition(particle& P1)
 {
 	P1.setPosition
 		(
-		P1.getXposition() + P1.getXvelocity(),
-		P1.getYposition() + P1.getYvelocity(),
-		P1.getZposition() + P1.getZvelocity()
+		P1.getXposition() + P1.getXvelocity()* 1/ 15,
+		P1.getYposition() + P1.getYvelocity() * 1 / 15,
+		P1.getZposition() + P1.getZvelocity() * 1 /15
 		);
 }
 void Logic::updateVelocity(particle& P1)
 {
 	P1.setVelocity
 	(
-		P1.getXvelocity() + P1.getXacceleration(),
-		P1.getYvelocity() + P1.getYacceleration(),
-		P1.getZvelocity() + P1.getZacceleartion()
+		P1.getXvelocity() + P1.getXacceleration() * 1 / 15,
+		P1.getYvelocity() + P1.getYacceleration() * 1 / 15,
+		P1.getZvelocity() + P1.getZacceleartion() * 1 / 15
 	);
 }
 void Logic::updateAccelerationDueToGravity(particle& P1, particle& P2) 
@@ -75,15 +78,15 @@ void Logic::updateAccelerationDueToGravity(particle& P1, particle& P2)
 
 	P1.setAcceleration
 	(
-		 Logic::getForceFromGravity_X(P1, P2) / P1.getMass(),
-		Logic::getForceFromGravity_Y(P1, P2) / P1.getMass(),
-		 Logic::getForceFromGravity_Z(P1, P2) / P1.getMass()
+		 Logic::getForceFromGravity_X(P1, P2) / (P1.getMass()*1),
+		Logic::getForceFromGravity_Y(P1, P2) / (P1.getMass()*1),
+		 Logic::getForceFromGravity_Z(P1, P2) / (P1.getMass()*1)
 	);
 	P2.setAcceleration
 	(
-		Logic::getForceFromGravity_X(P2, p0) / P2.getMass(),
-	 Logic::getForceFromGravity_Y(P2, p0) / P2.getMass(),
-		 Logic::getForceFromGravity_Z(P2, p0) / P2.getMass()
+		Logic::getForceFromGravity_X(P2, p0) / (P2.getMass()*1),
+	 Logic::getForceFromGravity_Y(P2, p0) / (P2.getMass()*1),
+		 Logic::getForceFromGravity_Z(P2, p0) / (P2.getMass()*1)
 	);
 
 

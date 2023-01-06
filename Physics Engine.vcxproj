@@ -135,11 +135,13 @@
   <ItemGroup>
     <ClInclude Include="logic.h" />
     <ClInclude Include="particle.h" />
+    <ClInclude Include="particleVectors.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="logic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="particle.cpp" />
+    <ClCompile Include="particleVectors.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

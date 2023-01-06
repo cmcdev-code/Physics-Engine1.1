@@ -21,6 +21,9 @@
     <ClInclude Include="logic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="particleVectors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="particle.cpp">
@@ -30,6 +33,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="logic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="particleVectors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
