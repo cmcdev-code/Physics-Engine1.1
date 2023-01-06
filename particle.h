@@ -1,5 +1,5 @@
 #pragma once
-
+#include <SFML/Graphics.hpp>
 
 
 
@@ -11,6 +11,8 @@ class particle {
 		
 		particle(double Xp, double Yp, double Zp, double Xv, double Yv, double Zv, double
 			Xa, double Ya, double Za,long double mass, long double temp, double radius);
+
+	
 
 		void setMass(long double mass);
 		long double getMass() const;
@@ -62,5 +64,5 @@ class particle {
 		double position[3];
 		double velocity[3];
 		double acceleration[3];
-	
+		
 };

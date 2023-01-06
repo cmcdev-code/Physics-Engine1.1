@@ -1,5 +1,5 @@
 #include "particle.h"
-
+#include <SFML/Graphics.hpp>
 
 particle::particle() 
 {
@@ -19,8 +19,6 @@ particle::particle(double Xp, double Yp, double Zp, double Xv, double Yv, double
 	this->mass = mass;
 	this->temp = temp;
 	this->radius = radius;
-
-
 }
 
 
