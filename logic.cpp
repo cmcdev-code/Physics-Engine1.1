@@ -57,18 +57,18 @@ void Logic::updatePosition(particle& P1)
 {
 	P1.setPosition
 		(
-		P1.getXposition() + P1.getXvelocity()* 1/ 15,
-		P1.getYposition() + P1.getYvelocity() * 1 / 15,
-		P1.getZposition() + P1.getZvelocity() * 1 /15
+		P1.getXposition() + P1.getXvelocity()* 1/ 30,
+		P1.getYposition() + P1.getYvelocity() * 1 / 30,
+		P1.getZposition() + P1.getZvelocity() * 1 /30
 		);
 }
 void Logic::updateVelocity(particle& P1)
 {
 	P1.setVelocity
 	(
-		P1.getXvelocity() + P1.getXacceleration() * 1 / 15,
-		P1.getYvelocity() + P1.getYacceleration() * 1 / 15,
-		P1.getZvelocity() + P1.getZacceleartion() * 1 / 15
+		P1.getXvelocity() + P1.getXacceleration() * 1 / 30,
+		P1.getYvelocity() + P1.getYacceleration() * 1 / 30,
+		P1.getZvelocity() + P1.getZacceleartion() * 1 / 30
 	);
 }
 void Logic::updateAccelerationDueToGravity(particle& P1, particle& P2) 
