@@ -34,8 +34,11 @@ void particleVectors::updateGravityOnParticles()
 			particles.at(i).circle.setPosition(particles.at(i).transformPoint(particles.at(i).getXposition(), particles.at(i).getYposition(), WINDOWSIZE));
 			Logic::updatePosition(particles.at(i));
 			Logic::updateVelocity(particles.at(i));
-			//std::cout << "Acceleration  :" << particles.at(i).getXacceleration() << "  " << particles.at(i).getYacceleration() << "\n";
-			//std::cout << "Velocity  :" << particles.at(i).getXvelocity() << "  " << particles.at(i).getYvelocity() <<"\n";
+			Logic::changeAccleration(particles.at(i), 0, 0, 0);
+
+
+			////std::cout << "Acceleration  :" << particles.at(i).getXacceleration() << "  " << particles.at(i).getYacceleration() << "\n";
+			////std::cout << "Velocity  :" << particles.at(i).getXvelocity() << "  " << particles.at(i).getYvelocity() <<"\n";
 		}
 
 	
@@ -60,7 +63,7 @@ void particleVectors::collisions() {
 	{
 		for (int j = 0; j < particles.size(); j++) {
 			if (i != j)
-				if (Logic::getDistanceBetweenParticle(particles.at(i), particles.at(j)) <= (particles.at(i).getRadius() + particles.at(j).getRadius())/1000) {
+				if (Logic::getDistanceBetweenParticle(particles.at(i), particles.at(j)) <= (particles.at(i).getRadius() + particles.at(j).getRadius())/900) {
 
 					//particles.at(i).setVelocity((particles.at(i).getMass() * particles.at(i).getXvelocity() + particles.at(j).getMass() * particles.at(j).getXvelocity()) / (particles.at(i).getMass() * particles.at(j).getMass()),
 					//	(particles.at(i).getMass() * particles.at(i).getYvelocity() + particles.at(j).getMass() * particles.at(j).getYvelocity() )/ (particles.at(i).getMass() * particles.at(j).getMass()),
@@ -72,6 +75,8 @@ void particleVectors::collisions() {
 		
 					//	(particles.at(i).getMass() * particles.at(i).getZvelocity() + particles.at(j).getMass() * particles.at(j).getZvelocity()) / (particles.at(i).getMass() * particles.at(j).getMass()));
 					collision1(particles.at(i), particles.at(j));
+					particles.at(1).setVelocity(0, 0, 0);
+					particles.at(0).setVelocity(0, 0, 0);
 				}
 
 
