@@ -1,7 +1,7 @@
 #include "logic.h"
 #include <cmath>;
 #include <iostream>//debug
-
+//
 #define gravity 0.000000000066743
 //#define gravity -0.000000000066743
 //#define gravity 0.0000066743
