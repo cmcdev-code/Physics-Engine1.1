@@ -10,9 +10,10 @@ particle::particle()
 	setAcceleration(0.0f, 0.0f, 0.0f);
 	setVelocity(0.0f, 0.0f, 0.0f);
 	setPosition(0.0f, 0.0f, 0.0f);
+	coefficentRest = 0.0;
 }
 particle::particle(double Xp, double Yp, double Zp, double Xv, double Yv, double Zv, double
-	Xa, double Ya, double Za,long double mass, long double temp, double radius) 
+	Xa, double Ya, double Za,long double mass, long double temp, double radius, double coefficentRest)
 {
 	setPosition(Xp, Yp, Zp);
 	setVelocity(Xv, Yv, Zv);
@@ -22,6 +23,7 @@ particle::particle(double Xp, double Yp, double Zp, double Xv, double Yv, double
 	this->radius = radius;
 	this->circle.setRadius(radius);
 	this->setCircleCenterOrigin(WINDOWSIZE);
+	this->coefficentRest = coefficentRest;
 }
 
 
@@ -197,8 +199,12 @@ void particle::setCircleCenterOrigin(double windowX, double windowY)
 }
 
 
-
-
+void particle::setcoefficentRest(double coefficentRest) {
+	this->coefficentRest = coefficentRest;
+}
+double particle::getCoefficentRest() const {
+	return this->coefficentRest;
+}
 
 
 

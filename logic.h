@@ -3,6 +3,8 @@
 
 
 
+
+
 class Logic {
 
 public:
@@ -22,7 +24,9 @@ public:
 	static void updateVelocity(particle& P1);
 	
 	static void updateAccelerationDueToGravity(particle& P1, particle& P2);
+
 	
+
 
 	
 

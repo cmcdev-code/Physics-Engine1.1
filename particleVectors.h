@@ -20,8 +20,8 @@ public:
 
 	std::vector<particle> particles;
 	
-	void collisions();
-
+	//void collisions();
+	
 
 
 };

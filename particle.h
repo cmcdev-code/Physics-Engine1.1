@@ -10,7 +10,7 @@ class particle {
 		particle();
 		
 		particle(double Xp, double Yp, double Zp, double Xv, double Yv, double Zv, double
-			Xa, double Ya, double Za,long double mass, long double temp, double radius);
+			Xa, double Ya, double Za,long double mass, long double temp, double radius,double coefficentRest=0);
 
 	
 
@@ -62,7 +62,8 @@ class particle {
 		void setCircleCenterOrigin(double windowX, double windowY);
 		sf::CircleShape circle;
 
-
+		void setcoefficentRest(double coefficentRest);
+		double getCoefficentRest() const;
 
 	private:
 		long double mass;
@@ -71,5 +72,5 @@ class particle {
 		double position[3];
 		double velocity[3];
 		double acceleration[3];
-		
+		double coefficentRest;
 };

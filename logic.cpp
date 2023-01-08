@@ -3,11 +3,17 @@
 #include <iostream>//debug
 
 #define gravity 0.000000000066743
+//#define gravity -0.000000000066743
+//#define gravity 0.0000066743
+//#define gravity 0.0000066743
+#define time 1
 
 double debug(double a) {
 	//std::cout << a << std::endl;
 	return a;
 }
+
+//long double	Logic::time=1;
 double Logic::getDistanceBetweenParticle(particle& P1, particle& P2) 
 {
 	double distance =std::pow(
@@ -69,19 +75,34 @@ void Logic::updatePosition(particle& P1)
 {
 	P1.setPosition
 		(
-		P1.getXposition() + P1.getXvelocity()* 1/ 3000,
-		P1.getYposition() + P1.getYvelocity() * 1 / 3000,
-		P1.getZposition() + P1.getZvelocity() * 1 /3000
+		P1.getXposition() + P1.getXvelocity()* time,
+		P1.getYposition() + P1.getYvelocity() * time,
+		P1.getZposition() + P1.getZvelocity() * time
 		);
 }
 void Logic::updateVelocity(particle& P1)
 {
-	P1.setVelocity
-	(
-		P1.getXvelocity() + P1.getXacceleration() * 1 / 3000,
-		P1.getYvelocity() + P1.getYacceleration() * 1 / 3000,
-		P1.getZvelocity() + P1.getZacceleartion() * 1 / 3000
-	);
+	double x, y, z;
+	P1.getPosition(x, y, z);
+	if (x <= -40 or x >= 40 or y <= -28 or y >=28) {
+		P1.setVelocity
+		(
+			-.65*P1.getXvelocity() + P1.getXacceleration() * time,
+			-.65*P1.getYvelocity() + P1.getYacceleration() * time,
+			-.65*P1.getZvelocity() + P1.getZacceleartion() * time
+		);
+	}else
+	 {
+		P1.setVelocity
+		(
+			P1.getXvelocity() + P1.getXacceleration() * time,
+			P1.getYvelocity() + P1.getYacceleration() * time,
+			P1.getZvelocity() + P1.getZacceleartion() * time
+
+		);
+
+	
+	}
 }
 void Logic::updateAccelerationDueToGravity(particle& P1, particle& P2) 
 {
@@ -90,15 +111,15 @@ void Logic::updateAccelerationDueToGravity(particle& P1, particle& P2)
 
 	P1.setAcceleration
 	(
-		 Logic::getForceFromGravity_X(P1, P2) / (P1.getMass()*1),
-		Logic::getForceFromGravity_Y(P1, P2) / (P1.getMass()*1),
-		 Logic::getForceFromGravity_Z(P1, P2) / (P1.getMass()*1)
+		 Logic::getForceFromGravity_X(P1, P2) / (P1.getMass()/time),
+		Logic::getForceFromGravity_Y(P1, P2) / (P1.getMass()/time),
+		 Logic::getForceFromGravity_Z(P1, P2) / (P1.getMass()/time)
 	);
 	P2.setAcceleration
 	(
-		Logic::getForceFromGravity_X(P2, p0) / (P2.getMass()*1),
-	 Logic::getForceFromGravity_Y(P2, p0) / (P2.getMass()*1),
-		 Logic::getForceFromGravity_Z(P2, p0) / (P2.getMass()*1)
+		Logic::getForceFromGravity_X(P2, p0) / (P2.getMass()/time),
+	 Logic::getForceFromGravity_Y(P2, p0) / (P2.getMass()/time),
+		 Logic::getForceFromGravity_Z(P2, p0) / (P2.getMass()*time)
 	);
 
 
