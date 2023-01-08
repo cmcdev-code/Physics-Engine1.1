@@ -133,11 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="IMP_GAME_LOGIC.h" />
     <ClInclude Include="logic.h" />
     <ClInclude Include="particle.h" />
     <ClInclude Include="particleVectors.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="IMP_GAME_LOGIC.cpp" />
     <ClCompile Include="logic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="particle.cpp" />
