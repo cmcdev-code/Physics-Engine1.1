@@ -3,9 +3,10 @@
 #include <iostream>//debug
 //
 //#define gravity 0.000000000066743
-//#define gravity -0.000000000066743
+#define gravity -0.000000000066743
 //#define gravity 0.0000066743
-#define gravity -0.0000066743
+//#define gravity -0.0000066743
+
 #define time 1
 
 double debug(double a) {
@@ -14,18 +15,18 @@ double debug(double a) {
 }
 
 
-void getLastPosition(particle & p1,double& x, double& y, double& z) {
+void getLastPosition(particle & p1,long double& x, long double& y,long double& z) {
 	x = p1.getXposition() - p1.getXvelocity();
 	y = p1.getYposition() - p1.getYvelocity();
 	z = p1.getZposition() - p1.getZvelocity();
 }
-double distanceFromLast(particle& p1, double x, double y, double z) {
+long double distanceFromLast(particle& p1, long double x,long double y,long double z) {
 	double xd, yd, zd;
 	p1.getPosition(xd, yd, zd);
-	double xSquared = (p1.getXposition() - x) * (p1.getXposition() - x);
-	double ySquared = (p1.getYposition() - y) * (p1.getYposition() - y);
-	double zSquared = (p1.getZposition() - z) * (p1.getZposition() - z);
-	double a= pow(xSquared +ySquared + zSquared, .5);
+	long double xSquared = (p1.getXposition() - x) * (p1.getXposition() - x);
+	long double ySquared = (p1.getYposition() - y) * (p1.getYposition() - y);
+	long double zSquared = (p1.getZposition() - z) * (p1.getZposition() - z);
+	long double a= pow(xSquared +ySquared + zSquared, .5);
 //	std::cout << "DISTANCE a: " << a << std::endl;
 	return a;
 }
@@ -91,6 +92,10 @@ void Logic::changeAccleration(particle& P1, double X, double Y, double Z) {
 }
 void Logic::updatePosition(particle& P1) 
 {
+	double x, y, z;
+	P1.getPosition(x, y, z);
+
+
 	P1.setPosition
 		(
 		P1.getXposition() + P1.getXvelocity()* time,
@@ -101,21 +106,34 @@ void Logic::updatePosition(particle& P1)
 void Logic::updateVelocity(particle& P1)
 {
 	double x, y, z;
+
+
+
 	P1.getPosition(x, y, z);
+	double xv, yv, zv;
+	P1.getVelocity(xv,yv,zv);
+	if (xv >= 100 or yv >= 100 or zv >= 100) {
+		P1.setVelocity(0, 0, 0);
+	}
+
 	if (x <= -40 or x >= 40 or y <= -28 or y >=28) {
-		double angle, xl, yl, zl;
+		long double angle, xl, yl, zl;
 		getLastPosition(P1, xl, yl, zl);
 		 
-		angle = asin((x <= -40 or x >= 40) ? ((xl - x) / distanceFromLast(P1, xl, yl, zl)) : ((yl - y) / distanceFromLast(P1, xl, yl, zl)));
+		if (x <= -40 or x >= 40) {
+			angle = asin(((xl-x) / distanceFromLast(P1, xl, yl, zl)));
+		}
+		else {
+			angle=asin(((yl-y) / distanceFromLast(P1, xl, yl, zl))); 
+
+		}
 
 		
 		P1.setVelocity
 		(
-
-
-
-			0.1*cos(angle) + P1.getXacceleration() * time,
-			0.1*sin(angle) + P1.getYacceleration() * time, 
+			P1.getXvelocity()*cos(angle) + P1.getXacceleration() * time
+			,
+			P1.getYvelocity()*sin(angle) + P1.getYacceleration() * time, 
 			P1.getZvelocity() + P1.getZvelocity() * time
 				
 		);
