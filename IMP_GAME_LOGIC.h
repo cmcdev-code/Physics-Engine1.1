@@ -15,14 +15,16 @@ class IMP_GAME_LOGIC
 {
 
 	public:
-		void pullKeyBoardEvents(sf::RenderWindow & window ,particleVectors& particles);
+		void pullKeyBoardEvents(sf::RenderWindow & window,sf::View& view);
 
-		void createNewParticleDynamically();
+		void createNewParticleDynamically(sf::RenderWindow & window,  sf::View& view);
 
+		void drawAll(sf::RenderWindow& window);
 
+		void updateGravity();
 
-
-
+		private:
+		particleVectors Particles;
 
 
 

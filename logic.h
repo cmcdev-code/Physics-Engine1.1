@@ -25,16 +25,4 @@ public:
 	
 	static void updateAccelerationDueToGravity(particle& P1, particle& P2);
 
-	
-
-
-	
-
-
-
-
-
-
-
-
 };

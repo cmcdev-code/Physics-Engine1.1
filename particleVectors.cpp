@@ -73,7 +73,7 @@ void particleVectors::updateGravityOnParticles()
 			////std::cout << "Velocity  :" << particles.at(i).getXvelocity() << "  " << particles.at(i).getYvelocity() <<"\n";
 		}
 		
-		particles.at(1).setVelocity(0, 0, 0);
+		//particles.at(1).setVelocity(0, 0, 0);
 	}
 
 //void particleVectors::collisions() {
