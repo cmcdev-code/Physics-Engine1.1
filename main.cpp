@@ -12,6 +12,8 @@ int main()
     sf::RenderWindow window(sf::VideoMode(2560, 1440), "Stuff");
     while (window.isOpen())
     {
+
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -21,7 +23,7 @@ int main()
         game.pullKeyBoardEvents(window, view);
         window.clear();
         window.setView(view);
-      
+
         game.drawAll(window);
         game.updateGravity();
     }
