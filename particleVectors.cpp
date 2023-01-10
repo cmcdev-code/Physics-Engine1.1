@@ -10,6 +10,7 @@
 void particleVectors::drawAllParticles(sf::RenderWindow& window)
 {
 	for (int i = 0; i < particles.size(); i++) {
+        particles.at(i).circle.setRadius(particles.at(i).getRadius() * (particles.at(i).getZposition() >= 0 ? particles.at(i).getZposition() + 1 : 1 / (particles.at(i).getZposition() - 1)));
 		window.draw(particles.at(i).circle);
 	}
 	window.display();
@@ -51,7 +52,8 @@ void particleVectors::updateGravityOnParticles(const int& numberOfThreads)
                 int y = i % particles.size();
                 if (x != y) {
                     Logic::changeAccleration(particles.at(x), (Logic::getForceFromGravity_X(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getXacceleration(),
-                        (Logic::getForceFromGravity_Y(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getYacceleration(), 0);
+                        (Logic::getForceFromGravity_Y(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getYacceleration(), 
+                        (Logic::getForceFromGravity_Z(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getZacceleartion());
                 }
                 if (Logic::getDistanceBetweenParticle(particles.at(x), particles.at(y)) <= (particles.at(x).getRadius() + particles.at(y).getRadius()) / 1000) {
                     particles.at(x).circle.setPosition(particles.at(x).transformPoint(particles.at(x).getXposition(), particles.at(x).getYposition(), WINDOWSIZE));

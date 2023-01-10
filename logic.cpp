@@ -3,8 +3,8 @@
 
 //#define gravity 0.000000000066743
 //#define gravity -0.000000000066743
-//#define gravity  0.0000066743
-#define gravity -0.000066743
+#define gravity  0.0000066743
+//#define gravity -0.000066743
 
 #define time .1
 
@@ -43,9 +43,8 @@ double Logic::getForceFromGravity_X(particle& P1, particle& P2)
 	double MagnitudeOFVector = (getDistanceBetweenParticle(P1, P2));
 	if (MagnitudeOFVector <= ((P1.getRadius() + P2.getRadius()) / 1000) ){
 		return 0;
-	}//.75/exp((x*5)^2*(y*5)^2)
-	//.75/exp(pow(P1.getXposition()*5,2)*pow(P1.getYposition())
-	return    .75 / exp(pow(P1.getXposition() * 5, 2) * pow(P1.getYposition()*5,2)) *(getForceFromGravity(P1, P2) * (P1.getXposition() - P2.getXposition())) / (MagnitudeOFVector * MagnitudeOFVector);
+	}
+	return    (getForceFromGravity(P1, P2) * (P1.getXposition() - P2.getXposition())) / (MagnitudeOFVector * MagnitudeOFVector);
 }
 double Logic::getForceFromGravity_Y(particle& P1, particle& P2) 
 {
@@ -53,7 +52,7 @@ double Logic::getForceFromGravity_Y(particle& P1, particle& P2)
 	if (MagnitudeOFVector <= ((P1.getRadius() + P2.getRadius()) / 1000)) {
 		return 0;
 	}
-	return .75 / exp(pow(P1.getXposition() * 5, 2) * pow(P1.getYposition() * 5, 2)) * (getForceFromGravity(P1, P2) * (P1.getYposition() - P2.getYposition())) / (MagnitudeOFVector * MagnitudeOFVector);
+	return (getForceFromGravity(P1, P2) * (P1.getYposition() - P2.getYposition())) / (MagnitudeOFVector * MagnitudeOFVector);
 }
 double Logic::getForceFromGravity_Z(particle& P1, particle& P2) 
 {
@@ -92,7 +91,7 @@ void Logic::updatePosition(particle& P1)
 }
 void Logic::updateVelocity(particle& P1)
 {
-	double x, y, z;
+	/*double x, y, z;
 	P1.getPosition(x, y, z);
 
 	if (x + P1.getXvelocity() <= -28) {
@@ -143,7 +142,7 @@ void Logic::updateVelocity(particle& P1)
 
 		);
 	}
-	else
+	else*/
 	 {
 		P1.setVelocity
 		(

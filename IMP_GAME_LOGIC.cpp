@@ -70,8 +70,14 @@ void IMP_GAME_LOGIC::pullKeyBoardEvents(sf::RenderWindow& window, sf::View& view
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         createNewParticleDynamically(window, view);
     }
-  
-}
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+        Particles.particles.at(1).setZposition(Particles.particles.at(1).getZposition() + 0.1);
+        std::cout << Particles.particles.at(1).getZposition()<<std::endl;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::RShift)) {
+        Particles.particles.at(1).setZposition(Particles.particles.at(1).getZposition() - 0.1);
+    }
+}   
 
 
 void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf::View& view) {
@@ -92,10 +98,11 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         std::uniform_int_distribution<int> Vx(-10, 10);
         std::uniform_int_distribution<int> Vy(-10, 10);
       
+        
         int randomNumberVx = Vx(rng1);
         int randomNumberVy = Vy(rng1);
-      
 
+       
         //Coefficent of restitution
         std::uniform_real_distribution<double> Coef(0, 0.8);
         double coeficentofRest = Coef(rng1);
@@ -104,6 +111,8 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         particle* p = new particle(x, y, 0, randomNumberVx, randomNumberVy, 0, 0, 0, 0, randomNumber1, 0, randomNumber2, coeficentofRest);
 
         p->setVelocity(randomNumberVx, randomNumberVy, 0);
+        
+      
         Particles.particles.push_back(*p);
 
         //determinaing color
