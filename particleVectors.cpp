@@ -3,7 +3,7 @@
 #define WINDOWSIZE 2560, 1440
 #include <iostream>
 #include "particle.h"
-
+#include <thread>
 
 
 
@@ -36,74 +36,41 @@ void collision1(particle& p1, particle& p2) {
 
 }
 
-void particleVectors::updateGravityOnParticles()
+
+void particleVectors::updateGravityOnParticles(const int& numberOfThreads)
 {
+    int totalWork = particles.size() * particles.size();
+    int workPerThread = totalWork / numberOfThreads;
+    int start = 0;
+    int end = workPerThread;
+    std::vector<std::thread> threads;
+    for (int i = 0; i < numberOfThreads; i++) {
+        threads.push_back(std::thread([&](int start, int end) {
+            for (int i = start; i < end; i++) {
+                int x = i / particles.size();
+                int y = i % particles.size();
+                if (x != y) {
+                    Logic::changeAccleration(particles.at(x), (Logic::getForceFromGravity_X(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getXacceleration(),
+                        (Logic::getForceFromGravity_Y(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getYacceleration(), 0);
+                }
+                if (Logic::getDistanceBetweenParticle(particles.at(x), particles.at(y)) <= (particles.at(x).getRadius() + particles.at(y).getRadius()) / 1000) {
+                    particles.at(x).circle.setPosition(particles.at(x).transformPoint(particles.at(x).getXposition(), particles.at(x).getYposition(), WINDOWSIZE));
+                    collision1(particles.at(x), particles.at(y));
 
-	for (int i = 0; i < particles.size(); i++)
-	{
-		for (int j = 0; j < particles.size(); j++) {
-			if (i != j) {
-				Logic::changeAccleration(particles.at(i), (Logic::getForceFromGravity_X(particles.at(i), particles.at(j)) / particles.at(i).getMass()) + particles.at(i).getXacceleration(),
-					(Logic::getForceFromGravity_Y(particles.at(i), particles.at(j)) / particles.at(i).getMass()) + particles.at(i).getYacceleration(), 0);
-			}
-
-		}
-	}
-	//collisions();
-	for (int i = 0; i < particles.size(); i++) {
-		for (int j = 0; j < particles.size(); j++) {
-
-			if (Logic::getDistanceBetweenParticle(particles.at(i), particles.at(j)) <= (particles.at(i).getRadius() + particles.at(j).getRadius()) / 1000) {
-
-				particles.at(i).circle.setPosition(particles.at(i).transformPoint(particles.at(i).getXposition(), particles.at(i).getYposition(), WINDOWSIZE));
-				collision1(particles.at(i), particles.at(j));
-
-				Logic::changeAccleration(particles.at(i), 0, 0, 0);
-
-
-			}
-			else {
-				particles.at(i).circle.setPosition(particles.at(i).transformPoint(particles.at(i).getXposition(), particles.at(i).getYposition(), WINDOWSIZE));
-
-
-			
-				Logic::updateVelocity(particles.at(i));
-				Logic::updatePosition(particles.at(i));
-				Logic::changeAccleration(particles.at(i), 0, 0, 0);
-				//	std::cout << "Position x: " << particles.at(i).getXposition() << " y: " << particles.at(i).getYposition() << " z: " << particles.at(i).getZposition() << std::endl;
-					//std::cout << "velocity x: " << particles.at(i).getXvelocity() << " y: " << particles.at(i).getYvelocity() << " z: " << particles.at(i).getZvelocity() << std::endl;
-			}
-		}
-		////std::cout << "Acceleration  :" << particles.at(i).getXacceleration() << "  " << particles.at(i).getYacceleration() << "\n";
-		////std::cout << "Velocity  :" << particles.at(i).getXvelocity() << "  " << particles.at(i).getYvelocity() <<"\n";
-	}
-
-	//particles.at(1).setVelocity(0, 0, 0);
+                    Logic::changeAccleration(particles.at(x), 0, 0, 0);
+                }
+                else {
+                    particles.at(x).circle.setPosition(particles.at(x).transformPoint(particles.at(x).getXposition(), particles.at(x).getYposition(), WINDOWSIZE));
+                    Logic::updateVelocity(particles.at(x));
+                    Logic::updatePosition(particles.at(x));
+                    Logic::changeAccleration(particles.at(x), 0, 0, 0);
+                }
+            }
+            }, start, end));
+        start = end;
+        end += workPerThread;
+    }
+    for (int i = 0; i < numberOfThreads; i++) {
+        threads.at(i).join();
+    }
 }
-
-//void particleVectors::collisions() {
-//	for (int i = 0; i < particles.size(); i++)
-//	{
-//		for (int j = 0; j < particles.size(); j++) {
-//			if (i != j)
-//				if (Logic::getDistanceBetweenParticle(particles.at(i), particles.at(j)) <= (particles.at(i).getRadius() + particles.at(j).getRadius())/1000) {
-//
-//					//particles.at(i).setVelocity((particles.at(i).getMass() * particles.at(i).getXvelocity() + particles.at(j).getMass() * particles.at(j).getXvelocity()) / (particles.at(i).getMass() * particles.at(j).getMass()),
-//					//	(particles.at(i).getMass() * particles.at(i).getYvelocity() + particles.at(j).getMass() * particles.at(j).getYvelocity() )/ (particles.at(i).getMass() * particles.at(j).getMass()),
-//
-//					//	(particles.at(i).getMass() * particles.at(i).getZvelocity() + particles.at(j).getMass() * particles.at(j).getZvelocity()) / (particles.at(i).getMass() * particles.at(j).getMass())
-//					//);
-//					//particles.at(j).setVelocity((particles.at(i).getMass() * particles.at(i).getXvelocity() + particles.at(j).getMass() * particles.at(j).getXvelocity()) / (particles.at(i).getMass() * particles.at(j).getMass()),
-//					//	(particles.at(i).getMass() * particles.at(i).getYvelocity() + particles.at(j).getMass() * particles.at(j).getYvelocity() )/ (particles.at(i).getMass() * particles.at(j).getMass()),
-//		
-//					//	(particles.at(i).getMass() * particles.at(i).getZvelocity() + particles.at(j).getMass() * particles.at(j).getZvelocity()) / (particles.at(i).getMass() * particles.at(j).getMass()));
-//					collision1(particles.at(i), particles.at(j));
-//					//particles.at(1).setVelocity(0, 0, 0);
-//				//	particles.at(0).setVelocity(0, 0, 0);
-//				}
-//
-//
-//		}
-//
-//	}
-//}

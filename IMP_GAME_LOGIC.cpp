@@ -154,5 +154,5 @@ void IMP_GAME_LOGIC::drawAll(sf::RenderWindow &window){
     Particles.drawAllParticles(window);
 }
 void IMP_GAME_LOGIC::updateGravity() {
-    Particles.updateGravityOnParticles();
+    Particles.updateGravityOnParticles(12);
 }

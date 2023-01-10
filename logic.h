@@ -17,9 +17,9 @@ public:
 	//will calculate the force of gravity between two particles just for z
 	static double getForceFromGravity_Z(particle& P1, particle& P2);
 
-	static void changePosition(particle& P1,double X,double Y,double Z);
-	static void changeVelocity(particle& P1,double X,double Y, double Z);
-	static void changeAccleration(particle& P1,double X,double Y,double Z);
+	static void changePosition(particle& P1, const double& X, const  double& Y, const double& Z);
+	static void changeVelocity(particle& P1, const double& X, const  double& Y, const double& Z);
+	static void changeAccleration(particle& P1, const double& X, const  double& Y, const double& Z);
 	
 	//will update the position of the particle by adding the current velocity to it
 	static void updatePosition(particle& P1);
