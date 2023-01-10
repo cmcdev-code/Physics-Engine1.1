@@ -1,18 +1,18 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-
-
 class particle {
 	public:	
 		
-
+		//constructors
 		particle();
 		
-		particle(double Xp, double Yp, double Zp, double Xv, double Yv, double Zv, double
-			Xa, double Ya, double Za,long double mass, long double temp, double radius,double coefficentRest=0);
-
-	
+		particle(	double Xp, double Yp, double Zp, 
+					double Xv, double Yv, double Zv, 
+				    double Xa, double Ya, double Za,
+					long double mass, long double temp, 
+					double radius,double coefficentRest=0
+				);
 
 		void setMass(long double mass);
 		long double getMass() const;
@@ -56,14 +56,14 @@ class particle {
 		double getYacceleration() const;
 		double getZacceleartion() const;
 
-		sf::Vector2f transformPoint(float x, float y, float windowWidth, float windowHeight);
-
-
-		void setCircleCenterOrigin(double windowX, double windowY);
-		sf::CircleShape circle;
-
 		void setcoefficentRest(double coefficentRest);
 		double getCoefficentRest() const;
+
+		sf::Vector2f transformPoint(float x, float y, float windowWidth, float windowHeight);
+
+		void setCircleCenterOrigin(double windowX, double windowY);
+
+		sf::CircleShape circle;
 
 	private:
 		long double mass;

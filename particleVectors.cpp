@@ -55,6 +55,7 @@ void particleVectors::updateGravityOnParticles()
 					
 					particles.at(i).circle.setPosition(particles.at(i).transformPoint(particles.at(i).getXposition(), particles.at(i).getYposition(), WINDOWSIZE));
 					collision1(particles.at(i), particles.at(j));
+				
 					Logic::changeAccleration(particles.at(i), 0, 0, 0);
 
 
@@ -62,18 +63,19 @@ void particleVectors::updateGravityOnParticles()
 				else {
 					particles.at(i).circle.setPosition(particles.at(i).transformPoint(particles.at(i).getXposition(), particles.at(i).getYposition(), WINDOWSIZE));
 
+					
 					Logic::updatePosition(particles.at(i));
 					Logic::updateVelocity(particles.at(i));
 					Logic::changeAccleration(particles.at(i), 0, 0, 0);
-
-
+				//	std::cout << "Position x: " << particles.at(i).getXposition() << " y: " << particles.at(i).getYposition() << " z: " << particles.at(i).getZposition() << std::endl;
+					//std::cout << "velocity x: " << particles.at(i).getXvelocity() << " y: " << particles.at(i).getYvelocity() << " z: " << particles.at(i).getZvelocity() << std::endl;
 				}
 			}
 			////std::cout << "Acceleration  :" << particles.at(i).getXacceleration() << "  " << particles.at(i).getYacceleration() << "\n";
 			////std::cout << "Velocity  :" << particles.at(i).getXvelocity() << "  " << particles.at(i).getYvelocity() <<"\n";
 		}
 		
-		particles.at(1).setVelocity(0, 0, 0);
+		//particles.at(1).setVelocity(0, 0, 0);
 	}
 
 //void particleVectors::collisions() {
