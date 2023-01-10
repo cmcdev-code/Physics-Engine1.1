@@ -83,7 +83,7 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         auto time = std::chrono::high_resolution_clock::now();
         std::mt19937 rng1(time.time_since_epoch().count());
 
-        std::uniform_real_distribution<double> dist1(1, 10);
+        std::uniform_real_distribution<double> dist1(9, 10);
         double randomNumber1 = dist1(rng1);
 
         std::uniform_int_distribution<int> dist2(300, 341);

@@ -3,10 +3,10 @@
 
 //#define gravity 0.000000000066743
 //#define gravity -0.000000000066743
-//#define gravity  0.0000066743
-#define gravity -0.0000066743
+#define gravity  0.0000066743
+//#define gravity -0.000066743
 
-#define time 1
+#define time .1
 
 void getLastPosition(particle &p1,long double& x, long double& y,long double& z) {
 	x = p1.getXposition() - p1.getXvelocity();
@@ -44,7 +44,7 @@ double Logic::getForceFromGravity_X(particle& P1, particle& P2)
 	if (MagnitudeOFVector <= ((P1.getRadius() + P2.getRadius()) / 1000) ){
 		return 0;
 	}
-	return (getForceFromGravity(P1, P2) * (P1.getXposition() - P2.getXposition())) /(MagnitudeOFVector * MagnitudeOFVector);
+	return    (getForceFromGravity(P1, P2) * (P1.getXposition() - P2.getXposition())) / (MagnitudeOFVector * MagnitudeOFVector);
 }
 double Logic::getForceFromGravity_Y(particle& P1, particle& P2) 
 {
