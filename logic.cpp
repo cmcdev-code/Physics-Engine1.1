@@ -3,10 +3,10 @@
 
 //#define gravity 0.000000000066743
 //#define gravity -0.000000000066743
-//#define gravity  0.0000066743
-#define gravity -0.000066743
+//#define gravity  0.00000066743
+#define gravity -0.00000066743
 
-#define time .1
+#define time 0.1
 
 void getLastPosition(particle &p1,long double& x, long double& y,long double& z) {
 	x = p1.getXposition() - p1.getXvelocity();
@@ -104,10 +104,10 @@ void Logic::updateVelocity(particle& P1)
 
 		P1.setVelocity
 		(
-			P1.getXvelocity() * sineOfAngel + P1.getXacceleration() * time
+			.98*P1.getXvelocity() * sineOfAngel + P1.getXacceleration() * time
 			,
-			P1.getYvelocity() * cosineOfAngle + P1.getYacceleration() * time,
-			P1.getZvelocity() + P1.getZvelocity() * time
+			.98 * P1.getYvelocity() * cosineOfAngle + P1.getYacceleration() * time,
+			.98 * P1.getZvelocity() + P1.getZvelocity() * time
 
 		);
 	}
@@ -120,10 +120,10 @@ void Logic::updateVelocity(particle& P1)
 
 			P1.setVelocity
 			(
-				P1.getXvelocity() *-sineOfAngel + P1.getXacceleration() * time
+				.98 * P1.getXvelocity() *-sineOfAngel + P1.getXacceleration() * time
 				,
-				P1.getYvelocity() * cosineOfAngle + P1.getYacceleration() * time,
-				P1.getZvelocity() + P1.getZvelocity() * time
+				.98 * P1.getYvelocity() * cosineOfAngle + P1.getYacceleration() * time,
+				.98 * P1.getZvelocity() + P1.getZvelocity() * time
 
 			);
 	}
@@ -136,10 +136,10 @@ void Logic::updateVelocity(particle& P1)
 
 		P1.setVelocity
 		(
-			P1.getXvelocity() * sineOfAngel + P1.getXacceleration() * time
+			.98 * P1.getXvelocity() * sineOfAngel + P1.getXacceleration() * time
 			,
-			P1.getYvelocity() * cosineOfAngle + P1.getYacceleration() * time,
-			P1.getZvelocity() + P1.getZvelocity() * time
+			.98 * P1.getYvelocity() * cosineOfAngle + P1.getYacceleration() * time,
+			.98 * P1.getZvelocity() + P1.getZvelocity() * time
 
 		);
 	}
