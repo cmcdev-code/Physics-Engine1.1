@@ -3,10 +3,10 @@
 
 //#define gravity 0.000000000066743
 //#define gravity -0.000000000066743
-//#define gravity 0.0000066743
-#define gravity -0.000066743
+//#define gravity  0.0000066743
+#define gravity -0.0000066743
 
-#define time .01
+#define time 1
 
 void getLastPosition(particle &p1,long double& x, long double& y,long double& z) {
 	x = p1.getXposition() - p1.getXvelocity();
@@ -92,31 +92,57 @@ void Logic::updatePosition(particle& P1)
 void Logic::updateVelocity(particle& P1)
 {
 	double x, y, z;
-
 	P1.getPosition(x, y, z);
 
-	if (x <= -28 or x >= 28 or y <= -28 or y >=28) {
-		long double angle(0);
-		 
-		if (x <= -28 or x >= 28) {
-			angle = asin(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
-		}
-		else {
-			angle=asin((P1.getYvelocity() / getMagnitudeOfVelocity(P1)));
-		}
+	if (x + P1.getXvelocity() <= -28) {
+		long double angle = asin(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
 
-		double cosineOfAngle=cos(angle);
-		double sineOfAngel=sin(angle);
-	
+
+		double cosineOfAngle = cos(angle);
+		double sineOfAngel = sin(angle);
+
 		P1.setVelocity
 		(
-			P1.getXvelocity()*sineOfAngel + P1.getXacceleration() * time
+			P1.getXvelocity() * sineOfAngel + P1.getXacceleration() * time
 			,
-			P1.getYvelocity()*cosineOfAngle + P1.getYacceleration() * time, 
+			P1.getYvelocity() * cosineOfAngle + P1.getYacceleration() * time,
 			P1.getZvelocity() + P1.getZvelocity() * time
-				
+
 		);
-	}else
+	}
+		if (x + P1.getXvelocity() >= 28) {
+			long double angle = asin(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
+
+
+			double cosineOfAngle = -cos(angle);
+			double sineOfAngel = sin(angle);
+
+			P1.setVelocity
+			(
+				P1.getXvelocity() *-sineOfAngel + P1.getXacceleration() * time
+				,
+				P1.getYvelocity() * cosineOfAngle + P1.getYacceleration() * time,
+				P1.getZvelocity() + P1.getZvelocity() * time
+
+			);
+	}
+	if (y + P1.getYvelocity() >= 28 or y + P1.getYvelocity() <= -28) {
+		long double angle = acos(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
+
+
+		double cosineOfAngle = cos(angle);
+		double sineOfAngel = sin(angle);
+
+		P1.setVelocity
+		(
+			P1.getXvelocity() * sineOfAngel + P1.getXacceleration() * time
+			,
+			P1.getYvelocity() * cosineOfAngle + P1.getYacceleration() * time,
+			P1.getZvelocity() + P1.getZvelocity() * time
+
+		);
+	}
+	else
 	 {
 		P1.setVelocity
 		(
