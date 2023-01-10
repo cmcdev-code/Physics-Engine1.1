@@ -7,12 +7,6 @@ class particleVectors
 {
 
 public:
-
-
-
-
-
-
 	void drawAllParticles(sf::RenderWindow& window);
 	
 	void updateGravityOnParticles();

@@ -185,14 +185,3 @@ sf::Vector2f particle::transformPoint(float x, float y, float windowWidth, float
 
 	return sf::Vector2f(x, y);
 }
-
-
-
-
-
-
-
-
-
-
-
