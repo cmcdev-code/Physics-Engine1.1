@@ -67,8 +67,16 @@ void IMP_GAME_LOGIC::pullKeyBoardEvents(sf::RenderWindow& window, sf::View& view
         Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() * -1);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+    {
+        for (int i = 0; i < Particles.particles.size(); i++) {
+            Particles.particles.at(i).setVelocity(0.001, 0.001, 0);
+     }
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         createNewParticleDynamically(window, view);
+      
     }
   
 }
@@ -83,27 +91,19 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         auto time = std::chrono::high_resolution_clock::now();
         std::mt19937 rng1(time.time_since_epoch().count());
 
-        std::uniform_real_distribution<double> dist1(9, 10);
+        std::normal_distribution<double> dist1(1000, 150);
         double randomNumber1 = dist1(rng1);
 
-        std::uniform_int_distribution<int> dist2(300, 341);
-        int randomNumber2 = dist2(rng1);
-
-        std::uniform_int_distribution<int> Vx(-10, 10);
-        std::uniform_int_distribution<int> Vy(-10, 10);
-      
-        int randomNumberVx = Vx(rng1);
-        int randomNumberVy = Vy(rng1);
-      
+     
 
         //Coefficent of restitution
         std::uniform_real_distribution<double> Coef(0, 0.8);
         double coeficentofRest = Coef(rng1);
 
      
-        particle* p = new particle(x, y, 0, randomNumberVx, randomNumberVy, 0, 0, 0, 0, randomNumber1, 0, randomNumber2, coeficentofRest);
+        particle* p = new particle(x, y, 0, 0,0 , 0, 0, 0, 0, randomNumber1, 0, randomNumber1/3, coeficentofRest);
 
-        p->setVelocity(randomNumberVx, randomNumberVy, 0);
+       
         Particles.particles.push_back(*p);
 
         //determinaing color
@@ -154,5 +154,5 @@ void IMP_GAME_LOGIC::drawAll(sf::RenderWindow &window){
     Particles.drawAllParticles(window);
 }
 void IMP_GAME_LOGIC::updateGravity() {
-    Particles.updateGravityOnParticles(16);
+    Particles.updateGravityOnParticles(14);
 }
