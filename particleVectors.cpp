@@ -11,6 +11,7 @@ void particleVectors::drawAllParticles(sf::RenderWindow& window)
 {
     
 	for (int i = 0; i < particles.size(); i++) {
+        particles.at(i).circle.setFillColor(sf::Color(particles.at(i).getXposition()*5+30, particles.at(i).getYposition()*5+30, particles.at(i).getXposition()*10 + 10*particles.at(i).getYposition()));
 		window.draw(particles.at(i).circle);
 	}
 	window.display();
@@ -54,7 +55,7 @@ void particleVectors::updateGravityOnParticles(const int& numberOfThreads)
                     Logic::changeAccleration(particles.at(x), (Logic::getForceFromGravity_X(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getXacceleration(),
                         (Logic::getForceFromGravity_Y(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getYacceleration(), 0);
                 }
-                if (Logic::getDistanceBetweenParticle(particles.at(x), particles.at(y)) <= (particles.at(x).getRadius() + particles.at(y).getRadius()) / 1200) {
+                if (Logic::getDistanceBetweenParticle(particles.at(x), particles.at(y)) <= (particles.at(x).getRadius() + particles.at(y).getRadius()) / 700) {
                     particles.at(x).circle.setPosition(particles.at(x).transformPoint(particles.at(x).getXposition(), particles.at(x).getYposition(), WINDOWSIZE));
                     collision1(particles.at(x), particles.at(y));
 
