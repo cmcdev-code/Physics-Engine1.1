@@ -53,7 +53,7 @@ double Logic::getForceFromGravity_Y(particle& P1, particle& P2)
 	if (MagnitudeOFVector <= ((P1.getRadius() + P2.getRadius()) / 1000)) {
 		return 0;
 	}
-	return  (getForceFromGravity(P1, P2) * (P1.getYposition() - P2.getYposition())) / (MagnitudeOFVector * MagnitudeOFVector);
+	return   (getForceFromGravity(P1, P2) * (P1.getYposition() - P2.getYposition())) / (MagnitudeOFVector * MagnitudeOFVector);
 }
 double Logic::getForceFromGravity_Z(particle& P1, particle& P2) 
 {
