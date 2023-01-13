@@ -76,11 +76,10 @@ void IMP_GAME_LOGIC::pullKeyBoardEvents(sf::RenderWindow& window, sf::View& view
     }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         createNewParticleDynamically(window, view);
-      
+        
     }
   
 }
-
 
 void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf::View& view) {
         sf::Vector2i XY = sf::Mouse::getPosition();
@@ -100,12 +99,12 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         std::uniform_real_distribution<double> Coef(0, 0.8);
         double coeficentofRest = Coef(rng1);
 
-     
-        particle* p = new particle(x, y, 0, 0,0 , 0, 0, 0, 0, randomNumber1, 0, randomNumber1/3, coeficentofRest);
+        
+        particle* p = new particle(x, y, 0, 0, 0, 0, 0, 0, 0, randomNumber1, 0, randomNumber1 / 3, coeficentofRest);
 
-       
+
         Particles.particles.push_back(*p);
-
+        
         //determinaing color
         std::uniform_int_distribution<int> distColor(1, 6);
         int randomNumberForColor = distColor(rng1);
@@ -155,4 +154,7 @@ void IMP_GAME_LOGIC::drawAll(sf::RenderWindow &window){
 }
 void IMP_GAME_LOGIC::updateGravity() {
     Particles.updateGravityOnParticles(15);
+}
+int IMP_GAME_LOGIC::returnSize() const {
+    return Particles.particles.size();
 }

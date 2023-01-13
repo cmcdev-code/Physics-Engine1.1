@@ -7,61 +7,75 @@ class particle {
 		//constructors
 		particle();
 		
-		particle(	double Xp, double Yp, double Zp, 
+		particle(	
+					double Xp, double Yp, double Zp, 
 					double Xv, double Yv, double Zv, 
 				    double Xa, double Ya, double Za,
 					long double mass, long double temp, 
 					double radius,double coefficentRest=0
 				);
-
-		void setMass(long double mass);
+		//Sets and gets mass
+		void setMass(const long double& mass);
 		long double getMass() const;
 
-		void setTemp(long double temp);
+		//sets and gets the temp
+		void setTemp(const long double& temp);
 		long double getTemp() const;
 
-		void setRadius(double radius);
+		//sets and gets radius 
+		void setRadius(const double& radius);
 		double getRadius() const;
 
-		void setPosition(double X, double Y, double Z);
+		//sets the position
+		void setPosition(const double& X,const double &Y, const double & Z);
 		void getPosition(double& X, double& Y, double& Z);
 
-		void setVelocity(double X, double Y, double Z);
+		//sets velocity
+		void setVelocity(const double& X,const double& Y,const double& Z);
 		void getVelocity(double& X, double& Y, double& Z);
 
-		void setAcceleration(double X, double Y, double Z);
+		//sets acceleration
+		void setAcceleration(const double & X, const double &Y,const double& Z);
 		void getAcceleration(double& X, double& Y, double& Z);
 
-		void setXposition(double X);
-		void setYposition(double Y);
-		void setZposition(double Z);
+		//sets the positions
+		void setXposition(const double& X);
+		void setYposition(const double& Y);
+		void setZposition(const double& Z);
 
+		//gets the positipons
 		double getXposition() const;
 		double getYposition() const;
 		double getZposition() const;
 
-		void setXvelocity(double X);
-		void setYvelocity(double Y);
-		void setZvelocity(double Z);
+		//stes velocity
+		void setXvelocity(const double& X);
+		void setYvelocity(const double& Y);
+		void setZvelocity(const double& Z);
 
+		//gets the velocity 
 		double getXvelocity() const;
 		double getYvelocity() const;
 		double getZvelocity() const;
 
-		void setXacceleration(double X);
-		void setYacceleration(double Y);
-		void setZacceleration(double Z);
+		//sets acceleration
+		void setXacceleration(const double& X);
+		void setYacceleration(const double& Y);
+		void setZacceleration(const double& Z);
 
 		double getXacceleration() const;
 		double getYacceleration() const;
 		double getZacceleartion() const;
 
-		void setcoefficentRest(double coefficentRest);
+		//setts and gets coeffiecent of Rest
+		void setcoefficentRest(const double& coefficentRest);
 		double getCoefficentRest() const;
 
-		sf::Vector2f transformPoint(float x, float y, float windowWidth, float windowHeight);
 
-		void setCircleCenterOrigin(double windowX, double windowY);
+		sf::Vector2f transformPoint(float x, float y,const float& windowWidth,const float& windowHeight);
+
+	
+		void setCircleCenterOrigin(const double & windowX,const double& windowY);
 
 		sf::CircleShape circle;
 

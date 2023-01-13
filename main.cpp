@@ -27,5 +27,6 @@ int main()
         game.drawAll(window);
         game.updateGravity();
     }
+    std::cout << game.returnSize();
     return 0;
 }

@@ -5,17 +5,14 @@
 #include "particle.h"
 #include <thread>
 
-
-
-void particleVectors::drawAllParticles(sf::RenderWindow& window)
-{
-    
+void particleVectors::drawAllParticles(sf::RenderWindow& window){
 	for (int i = 0; i < particles.size(); i++) {
         particles.at(i).circle.setFillColor(sf::Color(particles.at(i).getXposition()*5+30, particles.at(i).getYposition()*5+30, particles.at(i).getXposition()*10 + 10*particles.at(i).getYposition()));
 		window.draw(particles.at(i).circle);
-	}
-	window.display();
+	    }
+    window.display();
 }
+
 void collision1(particle& p1, particle& p2) {
 	// Calculate the velocities of the particles after the collision in the x-dimension
 	float v1x = (p1.getMass() * p1.getXvelocity() * (p1.getMass() - p2.getMass()) + (1 + .98) * p2.getMass() * p2.getMass() * p2.getXvelocity()) / ((p1.getMass() + p2.getMass()) * p1.getMass());
@@ -35,9 +32,7 @@ void collision1(particle& p1, particle& p2) {
 	Logic::updateVelocity(p2);
 	Logic::updatePosition(p1);
 	Logic::updatePosition(p2);
-
 }
-
 
 void particleVectors::updateGravityOnParticles(const int& numberOfThreads)
 {
