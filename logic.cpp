@@ -95,7 +95,7 @@ void Logic::updateVelocity(particle& P1)
 	double x, y, z;
 	P1.getPosition(x, y, z);
 
-	if (x + P1.getXvelocity() <= -28) {
+	if (x + P1.getXvelocity() <= -35) {
 		long double angle = asin(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
 
 
@@ -111,7 +111,7 @@ void Logic::updateVelocity(particle& P1)
 
 		);
 	}
-		if (x + P1.getXvelocity() >= 28) {
+		if (x + P1.getXvelocity() >= 35) {
 			long double angle = asin(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
 
 
