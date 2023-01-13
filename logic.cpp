@@ -1,5 +1,6 @@
 #include "logic.h"
 #include <cmath>;
+#include "iostream"
 
 //#define gravity 0.000000000066743
 //#define gravity -0.000000000066743
@@ -17,7 +18,6 @@ void getLastPosition(particle &p1,long double& x, long double& y,long double& z)
 long double getMagnitudeOfVelocity(particle	&p1) {
 	return pow(p1.getXvelocity() * p1.getXvelocity() + p1.getYvelocity() * p1.getYvelocity() + p1.getZvelocity() * p1.getZvelocity(), .5);
 }
-
 
 double Logic::getDistanceBetweenParticle(particle& P1, particle& P2) 
 {
@@ -152,7 +152,5 @@ void Logic::updateVelocity(particle& P1)
 			P1.getZvelocity() + P1.getZacceleartion() * time
 
 		);
-
-	
 	}
 }

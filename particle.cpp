@@ -32,14 +32,14 @@ particle::particle
 		this->coefficentRest = coefficentRest;
 }
 
-void particle::setMass(long double mass){
+void particle::setMass(const long double &mass){
 	this->mass = mass;
 }
 long double particle::getMass() const{
 	return this->mass;
 }
 
-void particle::setTemp(long double temp){
+void particle::setTemp(const long double &temp){
 	this->temp = temp;
 }
 
@@ -47,14 +47,14 @@ long double particle::getTemp() const{
 	return this->temp;
 }
 
-void particle::setRadius(double radius){
+void particle::setRadius(const double& radius){
 	this->radius = radius;
 }
 double particle::getRadius() const{
 	return this->radius;
 }
 
-void particle::setPosition(double X, double Y, double Z){
+void particle::setPosition(const double & X,const double &Y,const double& Z){
 	this->position[0] = X;
 	this->position[1] = Y;
 	this->position[2] = Z;
@@ -66,7 +66,7 @@ void particle::getPosition(double& X, double& Y, double& Z){
 	Z = this->position[2];
 }
 
-void particle::setVelocity(double X, double Y, double Z){
+void particle::setVelocity(const double& X, const double& Y,const double& Z){
 	this->velocity[0] = X;
 	this->velocity[1] = Y;
 	this->velocity[2] = Z;
@@ -78,7 +78,7 @@ void particle::getVelocity(double& X, double& Y, double& Z){
 	Z = this->velocity[2];
 }
 
-void particle::setAcceleration(double X, double Y, double Z){
+void particle::setAcceleration(const double &X,const double &Y,const double &Z){
 	this->acceleration[0] = X;
 	this->acceleration[1] = Y;
 	this->acceleration[2] = Z;
@@ -90,16 +90,16 @@ void particle::getAcceleration(double& X, double& Y, double& Z){
 	Z = this->acceleration[2];
 }
 
-void particle::setXposition(double X){
+void particle::setXposition(const double &X){
 	this->position[0] = X;
 }
 
-void particle::setYposition(double Y){
+void particle::setYposition(const double &Y){
 	this->position[1] = Y;
 
 }
 
-void particle::setZposition(double Z){
+void particle::setZposition(const double &Z){
 	this->position[2] = Z;
 }
 
@@ -115,15 +115,15 @@ double particle::getZposition() const{
 	return this->position[2];
 }
 
-void particle::setXvelocity(double X){
+void particle::setXvelocity(const double& X){
 	this->velocity[0] = X;
 }
 
-void particle::setYvelocity(double Y){
+void particle::setYvelocity(const double& Y){
 	this->velocity[1] = Y;
 }
 
-void particle::setZvelocity(double Z){
+void particle::setZvelocity(const double& Z){
 	this->velocity[2] = Z;
 }
 
@@ -139,15 +139,15 @@ double particle::getZvelocity() const{
 	return this->velocity[2];
 }
 
-void particle::setXacceleration(double X) {
+void particle::setXacceleration(const double& X) {
 	this->acceleration[0] = X;
 }
 
-void particle::setYacceleration(double Y) {
+void particle::setYacceleration(const double& Y) {
 	this->acceleration[1] = Y;
 }
 
-void particle::setZacceleration(double Z){
+void particle::setZacceleration(const double& Z){
 	this->acceleration[2] = Z;
 }
 
@@ -162,19 +162,19 @@ double particle::getYacceleration() const {
 double particle::getZacceleartion() const {
 	return this->acceleration[2];
 }
-void particle::setCircleCenterOrigin(double windowX, double windowY) {
+void particle::setCircleCenterOrigin(const double & windowX, const double & windowY) {
 	circle.setOrigin(getRadius(), getRadius());
 	circle.setPosition(transformPoint(getXposition(), getYposition(), windowX, windowY));
 }
 
-void particle::setcoefficentRest(double coefficentRest) {
+void particle::setcoefficentRest(const double& coefficentRest) {
 	this->coefficentRest = coefficentRest;
 }
 double particle::getCoefficentRest() const {
 	return this->coefficentRest;
 }
 
-sf::Vector2f particle::transformPoint(float x, float y, float windowWidth, float windowHeight){
+sf::Vector2f particle::transformPoint(float x, float y, const float & windowWidth,const float& windowHeight){
 	y = -y;
 
 	x = (x / 2.0f) * windowWidth;

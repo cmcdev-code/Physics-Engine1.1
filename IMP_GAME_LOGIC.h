@@ -23,6 +23,7 @@ class IMP_GAME_LOGIC
 
 		void updateGravity();
 
+		int returnSize() const;
 		private:
 		particleVectors Particles;
 

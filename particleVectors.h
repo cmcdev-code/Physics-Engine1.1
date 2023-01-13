@@ -11,12 +11,7 @@ public:
 	
 	void updateGravityOnParticles(const int & numberOfThreads);
 
-
 	std::vector<particle> particles;
-	
-
-	
-
 
 };
 
