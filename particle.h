@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include "Vector3.h"
 
+
+
 class particle {
 	public:	
 		
@@ -87,7 +89,7 @@ class particle {
 		long double temp;
 		double coefficentRest;
 		double radius;
-		Vector3 position;
-		Vector3 velocity;
-		Vector3 acceleration;
+		Vector3<double> position;
+		Vector3<double> velocity;
+		Vector3<double> acceleration;
 };

@@ -10,7 +10,6 @@ particle::particle(){
 	setAcceleration(0.0f, 0.0f, 0.0f);
 	setVelocity(0.0f, 0.0f, 0.0f);
 	setPosition(0.0f, 0.0f, 0.0f);
-	
 }
 
 particle::particle
