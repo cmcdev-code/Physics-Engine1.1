@@ -129,7 +129,6 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         case 6:
             Particles.particles.at(Particles.particles.size() - 1).circle.setFillColor(sf::Color::Cyan);
             break;
-
         }
         for (int i = 0; i < Particles.particles.size(); i++)
         { 

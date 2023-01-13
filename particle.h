@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Vector3.h"
 
 class particle {
 	public:	
@@ -79,12 +80,14 @@ class particle {
 
 		sf::CircleShape circle;
 
+		
+
 	private:
 		long double mass;
 		long double temp;
-		double radius;
-		double position[3];
-		double velocity[3];
-		double acceleration[3];
 		double coefficentRest;
+		double radius;
+		Vector3 position;
+		Vector3 velocity;
+		Vector3 acceleration;
 };

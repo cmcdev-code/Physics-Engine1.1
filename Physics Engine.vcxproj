@@ -137,6 +137,7 @@
     <ClInclude Include="logic.h" />
     <ClInclude Include="particle.h" />
     <ClInclude Include="particleVectors.h" />
+    <ClInclude Include="Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IMP_GAME_LOGIC.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="particle.cpp" />
     <ClCompile Include="particleVectors.cpp" />
+    <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
