@@ -9,9 +9,10 @@
 #include <chrono>
 #include <thread>
 #include <random>
+#include <vector>
 
 
-class IMP_GAME_LOGIC
+class Scene
 {
 
 	public:
@@ -24,9 +25,19 @@ class IMP_GAME_LOGIC
 		void updateGravity();
 
 		int returnSize() const;
-		private:
-		particleVectors Particles;
 
+		void setMassOfParticlesInArray();
+
+		void setArrayOfVectorParticlePointers();
+
+		void updateGravityOnParticles();
+
+		double massOfparticlesInArray[56][56];
+		std::vector<particle*> BoxesOfParticles[56][56];
+
+		//private:
+		particleVectors Particles;
+		
 
 
 

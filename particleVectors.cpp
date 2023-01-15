@@ -5,14 +5,15 @@
 #include "particle.h"
 #include <thread>
 
-void particleVectors::drawAllParticles(sf::RenderWindow& window){
-	for (int i = 0; i < particles.size(); i++) {
-        particles.at(i).circle.setFillColor(sf::Color(particles.at(i).getXposition()*5+30, particles.at(i).getYposition()*5+30, particles.at(i).getXposition()*10 + 10*particles.at(i).getYposition()));
-		window.draw(particles.at(i).circle);
-	    }
-    window.display();
-}
 
+
+void particleVectors::drawAllParticles(sf::RenderWindow& window)
+{
+	for (int i = 0; i < particles.size(); i++) {
+		window.draw(particles.at(i).circle);
+	}
+	window.display();
+}
 void collision1(particle& p1, particle& p2) {
 	// Calculate the velocities of the particles after the collision in the x-dimension
 	float v1x = (p1.getMass() * p1.getXvelocity() * (p1.getMass() - p2.getMass()) + (1 + .98) * p2.getMass() * p2.getMass() * p2.getXvelocity()) / ((p1.getMass() + p2.getMass()) * p1.getMass());
@@ -32,7 +33,9 @@ void collision1(particle& p1, particle& p2) {
 	Logic::updateVelocity(p2);
 	Logic::updatePosition(p1);
 	Logic::updatePosition(p2);
+
 }
+
 
 void particleVectors::updateGravityOnParticles(const int& numberOfThreads)
 {
@@ -50,7 +53,7 @@ void particleVectors::updateGravityOnParticles(const int& numberOfThreads)
                     Logic::changeAccleration(particles.at(x), (Logic::getForceFromGravity_X(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getXacceleration(),
                         (Logic::getForceFromGravity_Y(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getYacceleration(), 0);
                 }
-                if (Logic::getDistanceBetweenParticle(particles.at(x), particles.at(y)) <= (particles.at(x).getRadius() + particles.at(y).getRadius()) / 700) {
+                if (Logic::getDistanceBetweenParticle(particles.at(x), particles.at(y)) <= (particles.at(x).getRadius() + particles.at(y).getRadius()) / 1000) {
                     particles.at(x).circle.setPosition(particles.at(x).transformPoint(particles.at(x).getXposition(), particles.at(x).getYposition(), WINDOWSIZE));
                     collision1(particles.at(x), particles.at(y));
 
@@ -62,8 +65,6 @@ void particleVectors::updateGravityOnParticles(const int& numberOfThreads)
                     Logic::updatePosition(particles.at(x));
                     Logic::changeAccleration(particles.at(x), 0, 0, 0);
                 }
-            }if (particles.size() > 2) {
-               
             }
             }, start, end));
         start = end;

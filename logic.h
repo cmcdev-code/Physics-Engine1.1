@@ -25,4 +25,5 @@ public:
 	static void updatePosition(particle& P1);
 	//will update the velocity of a particle by adding the current acceleartion of the particlle to the velocity
 	static void updateVelocity(particle& P1);
+	static sf::Color getGradientColor(const particle& P1);
 };

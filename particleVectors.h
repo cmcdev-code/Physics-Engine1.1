@@ -7,9 +7,11 @@ class particleVectors
 {
 
 public:
-	void drawAllParticles(sf::RenderWindow& window);
+	
 	
 	void updateGravityOnParticles(const int & numberOfThreads);
+
+	void drawAllParticles(sf::RenderWindow& window);
 
 	std::vector<particle> particles;
 

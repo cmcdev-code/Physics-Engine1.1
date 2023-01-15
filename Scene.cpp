@@ -1,4 +1,6 @@
-#include "IMP_GAME_LOGIC.h"
+#include "Scene.h"
+
+//
 
 void mouseToCartesian(float mouseX, float mouseY, float& x, float& y, sf::RenderWindow& window, sf::View& view) {
     // Get the position and size of the window
@@ -8,7 +10,7 @@ void mouseToCartesian(float mouseX, float mouseY, float& x, float& y, sf::Render
     x = (80.0f * mouseX / windowSize.x) - 40.0f;
     y = -((56.0f * mouseY / windowSize.y) - 28.0f);
 }
-void IMP_GAME_LOGIC::pullKeyBoardEvents(sf::RenderWindow& window, sf::View& view) {
+void Scene::pullKeyBoardEvents(sf::RenderWindow& window, sf::View& view) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         Particles.particles.at(1).setXposition(Particles.particles.at(1).getXposition() - 0.1);
@@ -54,13 +56,13 @@ void IMP_GAME_LOGIC::pullKeyBoardEvents(sf::RenderWindow& window, sf::View& view
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() *10000);
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() *1.1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
-        Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() / 10000);
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() / 1.1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
@@ -81,7 +83,7 @@ void IMP_GAME_LOGIC::pullKeyBoardEvents(sf::RenderWindow& window, sf::View& view
   
 }
 
-void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf::View& view) {
+void Scene::createNewParticleDynamically(sf::RenderWindow & window, sf::View& view) {
         sf::Vector2i XY = sf::Mouse::getPosition();
         float x, y;
         //std::cout << XY.x << "  " << XY.y << '\n';
@@ -90,7 +92,7 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         auto time = std::chrono::high_resolution_clock::now();
         std::mt19937 rng1(time.time_since_epoch().count());
 
-        std::normal_distribution<double> dist1(1000, 300);
+        std::normal_distribution<double> dist1(1000, 100);
         double randomNumber1 = dist1(rng1);
 
      
@@ -99,11 +101,11 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         std::uniform_real_distribution<double> Coef(0, 0.8);
         double coeficentofRest = Coef(rng1);
 
-        
-        particle* p = new particle(x, y, 0, 0, 0, 0, 0, 0, 0, randomNumber1, 0, randomNumber1 / 3, coeficentofRest);
+      
+            particle* p = new particle(x, y, 0, 0, 0, 0, 0, 0, 0, randomNumber1, 0, randomNumber1 / 3, coeficentofRest);
 
 
-        Particles.particles.push_back(*p);
+            Particles.particles.push_back(*p);
         
         //determinaing color
         std::uniform_int_distribution<int> distColor(1, 6);
@@ -148,12 +150,31 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         }
     } 
 
-void IMP_GAME_LOGIC::drawAll(sf::RenderWindow &window){
+
+void Scene::drawAll(sf::RenderWindow& window) {
     Particles.drawAllParticles(window);
 }
-void IMP_GAME_LOGIC::updateGravity() {
+void Scene::updateGravity() {
     Particles.updateGravityOnParticles(15);
 }
-int IMP_GAME_LOGIC::returnSize() const {
+int Scene::returnSize() const {
     return Particles.particles.size();
 }
+//void Scene::setMassOfParticlesInArray() 
+//{
+//    for (int i = 0; i < Particles.particles.size(); i++) {
+//        massOfparticlesInArray[int(Particles.particles.at(i).getXposition()) + 27][int(Particles.particles.at(i).getYposition() + 27)]+=Particles.particles.at(i).getMass();
+//    }
+//}
+//void Scene::setArrayOfVectorParticlePointers() 
+//{
+//    for (int i = 0; i < returnSize(); i++) {
+//        BoxesOfParticles[int(Particles.particles.at(i).getXposition()) + 27][int(Particles.particles.at(i).getYposition() + 27)].push_back(&Particles.particles.at(i));
+//    }
+//}
+
+//void Scene::updateGravityOnParticles() {
+//    setArrayOfVectorParticlePointers();
+//    setMassOfParticlesInArray();
+// 
+//}
