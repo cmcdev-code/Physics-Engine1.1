@@ -1,7 +1,6 @@
 #pragma once
 #include "logic.h"
 #include <iostream>
-#include "Sphere.h"
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include <string>
@@ -26,14 +25,14 @@ class Scene
 
 		int returnSize() const;
 
-		void setMassOfParticlesInArray();
+	/*	void setMassOfParticlesInArray();
 
 		void setArrayOfVectorParticlePointers();
 
-		void updateGravityOnParticles();
+		void updateGravityOnParticles();*/
 
-		double massOfparticlesInArray[56][56];
-		std::vector<particle*> BoxesOfParticles[56][56];
+	/*	double massOfparticlesInArray[56][56];
+		std::vector<particle*> BoxesOfParticles[56][56];*/
 
 		//private:
 		particleVectors Particles;

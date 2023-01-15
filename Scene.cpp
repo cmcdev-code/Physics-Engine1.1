@@ -38,7 +38,6 @@ void Scene::pullKeyBoardEvents(sf::RenderWindow& window, sf::View& view) {
     {
         Particles.particles.at(1).setYposition(Particles.particles.at(1).getYposition() + 0.1);
       
-
     } if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
     {
         Particles.particles.at(1).setYposition(Particles.particles.at(0).getYposition() + 0.1);
@@ -92,7 +91,7 @@ void Scene::createNewParticleDynamically(sf::RenderWindow & window, sf::View& vi
         auto time = std::chrono::high_resolution_clock::now();
         std::mt19937 rng1(time.time_since_epoch().count());
 
-        std::normal_distribution<double> dist1(1000, 100);
+        std::normal_distribution<double> dist1(1000, 1);
         double randomNumber1 = dist1(rng1);
 
      
@@ -104,34 +103,9 @@ void Scene::createNewParticleDynamically(sf::RenderWindow & window, sf::View& vi
       
             particle* p = new particle(x, y, 0, 0, 0, 0, 0, 0, 0, randomNumber1, 0, randomNumber1 / 3, coeficentofRest);
 
-
             Particles.particles.push_back(*p);
         
-        //determinaing color
-        std::uniform_int_distribution<int> distColor(1, 6);
-        int randomNumberForColor = distColor(rng1);
-        
-        switch (randomNumberForColor)
-        {
-        case 1:
-            Particles.particles.at(Particles.particles.size() - 1).circle.setFillColor(sf::Color::Red);
-            break;
-        case 2:
-            Particles.particles.at(Particles.particles.size() - 1).circle.setFillColor(sf::Color::Green);
-            break;
-        case 3:
-            Particles.particles.at(Particles.particles.size() - 1).circle.setFillColor(sf::Color::Magenta);
-            break;
-        case 4:
-            Particles.particles.at(Particles.particles.size() - 1).circle.setFillColor(sf::Color::Yellow);
-            break;
-        case 5:
-            Particles.particles.at(Particles.particles.size() - 1).circle.setFillColor(sf::Color::White);
-            break;
-        case 6:
-            Particles.particles.at(Particles.particles.size() - 1).circle.setFillColor(sf::Color::Cyan);
-            break;
-        }
+
         for (int i = 0; i < Particles.particles.size(); i++)
         { 
             if (Logic::getDistanceBetweenParticle(Particles.particles.at(Particles.particles.size() - 1), Particles.particles.at(i)) <= (Particles.particles.at(Particles.particles.size() - 1).getRadius() + Particles.particles.at(i).getRadius()) / 100) 
@@ -155,7 +129,7 @@ void Scene::drawAll(sf::RenderWindow& window) {
     Particles.drawAllParticles(window);
 }
 void Scene::updateGravity() {
-    Particles.updateGravityOnParticles(15);
+    Particles.updateGravityOnParticles(16);
 }
 int Scene::returnSize() const {
     return Particles.particles.size();

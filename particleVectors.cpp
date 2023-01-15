@@ -10,6 +10,8 @@
 void particleVectors::drawAllParticles(sf::RenderWindow& window)
 {
 	for (int i = 0; i < particles.size(); i++) {
+        particles.at(i).circle.setPosition(particles.at(i).transformPoint(particles.at(i).getXposition(), particles.at(i).getYposition(), WINDOWSIZE));
+        particles.at(i).circle.setFillColor(Logic::getGradientColor(particles.at(i)));
 		window.draw(particles.at(i).circle);
 	}
 	window.display();
@@ -50,20 +52,24 @@ void particleVectors::updateGravityOnParticles(const int& numberOfThreads)
                 int x = i / particles.size();
                 int y = i % particles.size();
                 if (x != y) {
-                    Logic::changeAccleration(particles.at(x), (Logic::getForceFromGravity_X(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getXacceleration(),
-                        (Logic::getForceFromGravity_Y(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getYacceleration(), 0);
-                }
-                if (Logic::getDistanceBetweenParticle(particles.at(x), particles.at(y)) <= (particles.at(x).getRadius() + particles.at(y).getRadius()) / 1000) {
-                    particles.at(x).circle.setPosition(particles.at(x).transformPoint(particles.at(x).getXposition(), particles.at(x).getYposition(), WINDOWSIZE));
-                    collision1(particles.at(x), particles.at(y));
+                    
+                    if (Logic::getDistanceBetweenParticle(particles.at(x), particles.at(y)) >= (particles.at(x).getRadius() + particles.at(y).getRadius()) / 900) {
+                            Logic::changeAccleration(particles.at(x), (Logic::getForceFromGravity_X(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getXacceleration(),
+                                (Logic::getForceFromGravity_Y(particles.at(x), particles.at(y)) / particles.at(x).getMass()) + particles.at(x).getYacceleration(), 0);
+                    }
+                    
+                    if (Logic::getDistanceBetweenParticle(particles.at(x), particles.at(y)) <= (particles.at(x).getRadius() + particles.at(y).getRadius()) / 900) {
+                    //   particles.at(x).circle.setPosition(particles.at(x).transformPoint(particles.at(x).getXposition(), particles.at(x).getYposition(), WINDOWSIZE));
+                        collision1(particles.at(x), particles.at(y));
 
-                    Logic::changeAccleration(particles.at(x), 0, 0, 0);
-                }
-                else {
-                    particles.at(x).circle.setPosition(particles.at(x).transformPoint(particles.at(x).getXposition(), particles.at(x).getYposition(), WINDOWSIZE));
-                    Logic::updateVelocity(particles.at(x));
-                    Logic::updatePosition(particles.at(x));
-                    Logic::changeAccleration(particles.at(x), 0, 0, 0);
+                        Logic::changeAccleration(particles.at(x), 0, 0, 0);
+                    }
+                    else {
+                      //  particles.at(x).circle.setPosition(particles.at(x).transformPoint(particles.at(x).getXposition(), particles.at(x).getYposition(), WINDOWSIZE));
+                        Logic::updateVelocity(particles.at(x));
+                        Logic::updatePosition(particles.at(x));
+                        Logic::changeAccleration(particles.at(x), 0, 0, 0);
+                    }
                 }
             }
             }, start, end));

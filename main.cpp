@@ -26,7 +26,6 @@ int main()
 
         game.drawAll(window);
         game.updateGravity();
-        a++;
         
         window.clear();
         

@@ -9,11 +9,6 @@
 
 #define time 0.1
 
-void getLastPosition(particle &p1,long double& x, long double& y,long double& z) {
-	x = p1.getXposition() - p1.getXvelocity();
-	y = p1.getYposition() - p1.getYvelocity();
-	z = p1.getZposition() - p1.getZvelocity();
-}
 
 long double getMagnitudeOfVelocity(particle	&p1) {
 	return pow(p1.getXvelocity() * p1.getXvelocity() + p1.getYvelocity() * p1.getYvelocity() + p1.getZvelocity() * p1.getZvelocity(), .5);
@@ -94,8 +89,12 @@ void Logic::updateVelocity(particle& P1)
 {
 	double x, y, z;
 	P1.getPosition(x, y, z);
+	if (x >= 28.01 or x <= -28.01 or y <= -28.01 or y >= 28.01) {
+		P1.setPosition(0, 0, 0);
+		
+	}
 
-	if (x + P1.getXvelocity() <= -28) {
+	else if (x + P1.getXvelocity() <= -28) {
 		long double angle = asin(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
 
 
@@ -110,8 +109,8 @@ void Logic::updateVelocity(particle& P1)
 			.98 * P1.getZvelocity() + P1.getZvelocity() * time
 
 		);
-	}
-		if (x + P1.getXvelocity() >= 28) {
+		}
+		else if (x + P1.getXvelocity() >= 28) {
 			long double angle = asin(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
 
 
@@ -126,8 +125,8 @@ void Logic::updateVelocity(particle& P1)
 				.98 * P1.getZvelocity() + P1.getZvelocity() * time
 
 			);
-	}
-	if (y + P1.getYvelocity() >= 28 or y + P1.getYvelocity() <= -28) {
+	} 
+	else if (y + P1.getYvelocity() >= 28 or y + P1.getYvelocity() <= -28) {
 		long double angle = acos(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
 
 
@@ -158,7 +157,50 @@ void Logic::updateVelocity(particle& P1)
 
 sf::Color Logic::getGradientColor(const particle& P1) 
 {
+	double x = (28 + P1.getXposition()) / 56;
+	double y = (28 + P1.getYposition()) / 56;
 
-	return sf::Color(tan(P1.getXposition())+30, tan(P1.getYposition())+30,atan2(P1.getXposition(),P1.getYposition())*100+30);
+	double hue = y * 360;
+	
+	sf::Color color = hsvToRGB(hue, x, 1.0);
+	return color;
+}
 
+//From https://alejandrohitti.com/2015/06/29/rgb-hsv-color-conversions/
+sf::Color Logic::hsvToRGB(const double hue, const double saturation, const double value)
+{
+	// Achromatic (gray)
+	if (saturation == 0)
+	{
+		return sf::Color(255, 255, 255);
+	}
+
+	// Conversion values
+	double tempH = hue;
+	tempH /= 60.0f;
+	int i = (int)std::floor(tempH);
+	double f = tempH - i;
+	int p = value * (1.0 - saturation);
+	int q = value * (1.0 - saturation * f);
+	int t = value * (1.0 - saturation * (1.0 - f));
+	p *= 255;
+	q *= 255;
+	t *= 255;
+
+	// There are 6 cases, one for every 60 degrees
+	switch (i)
+	{
+	case 0:
+		return sf::Color(255, t, p);
+	case 1:
+		return sf::Color(q, 255, p);
+	case 2:
+		return sf::Color(p, 255, t);
+	case 3:
+		return sf::Color(p, q, 255);
+	case 4:
+		return sf::Color(t, p, 255);
+	default:
+		return sf::Color(255, p, q);
+	}
 }
