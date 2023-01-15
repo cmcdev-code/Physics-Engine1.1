@@ -54,12 +54,12 @@ void IMP_GAME_LOGIC::pullKeyBoardEvents(sf::RenderWindow& window, sf::View& view
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() *10000);
+        Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() *1);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
-        Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() / 10000);
+        Particles.particles.at(1).setMass(Particles.particles.at(1).getMass() / 1);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -91,7 +91,7 @@ void IMP_GAME_LOGIC::createNewParticleDynamically(sf::RenderWindow & window, sf:
         auto time = std::chrono::high_resolution_clock::now();
         std::mt19937 rng1(time.time_since_epoch().count());
 
-        std::normal_distribution<double> dist1(1000, 300);
+        std::normal_distribution<double> dist1(1000, 1);
         double randomNumber1 = dist1(rng1);
 
      
