@@ -1,9 +1,9 @@
-#include "IMP_GAME_LOGIC.h"
+#include "Scene.h"
 
-
+int a = 0;
 int main()
 {
-    IMP_GAME_LOGIC game;
+    Scene game;
 
 
     sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(2560 * 40, 1440 * 40));
@@ -21,12 +21,19 @@ int main()
                 window.close();
         }
         game.pullKeyBoardEvents(window, view);
-        window.clear();
+        
         window.setView(view);
 
         game.drawAll(window);
         game.updateGravity();
+        a++;
+        
+        window.clear();
+        
+        
+
     }
     std::cout << game.returnSize();
+
     return 0;
-}
+    }

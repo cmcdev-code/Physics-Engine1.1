@@ -95,7 +95,7 @@ void Logic::updateVelocity(particle& P1)
 	double x, y, z;
 	P1.getPosition(x, y, z);
 
-	if (x + P1.getXvelocity() <= -35) {
+	if (x + P1.getXvelocity() <= -28) {
 		long double angle = asin(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
 
 
@@ -111,7 +111,7 @@ void Logic::updateVelocity(particle& P1)
 
 		);
 	}
-		if (x + P1.getXvelocity() >= 35) {
+		if (x + P1.getXvelocity() >= 28) {
 			long double angle = asin(((P1.getXvelocity()) / getMagnitudeOfVelocity(P1)));
 
 
@@ -153,4 +153,12 @@ void Logic::updateVelocity(particle& P1)
 
 		);
 	}
+
+}
+
+sf::Color Logic::getGradientColor(const particle& P1) 
+{
+
+	return sf::Color(tan(P1.getXposition())+30, tan(P1.getYposition())+30,atan2(P1.getXposition(),P1.getYposition())*100+30);
+
 }

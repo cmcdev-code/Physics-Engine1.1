@@ -24,7 +24,7 @@
     <ClInclude Include="particleVectors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IMP_GAME_LOGIC.h">
+    <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vector3.h">
@@ -44,7 +44,7 @@
     <ClCompile Include="particleVectors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IMP_GAME_LOGIC.cpp">
+    <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

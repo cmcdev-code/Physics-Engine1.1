@@ -1,95 +1,76 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Vector3.h"
-
-
 
 class particle {
-	public:	
-		
-		//constructors
-		particle();
-		
-		particle(	
-					double Xp, double Yp, double Zp, 
-					double Xv, double Yv, double Zv, 
-				    double Xa, double Ya, double Za,
-					long double mass, long double temp, 
-					double radius,double coefficentRest=0
-				);
-		//Sets and gets mass
-		void setMass(const long double& mass);
-		long double getMass() const;
+public:
 
-		//sets and gets the temp
-		void setTemp(const long double& temp);
-		long double getTemp() const;
+	//constructors
+	particle();
 
-		//sets and gets radius 
-		void setRadius(const double& radius);
-		double getRadius() const;
+	particle(double Xp, double Yp, double Zp,
+		double Xv, double Yv, double Zv,
+		double Xa, double Ya, double Za,
+		long double mass, long double temp,
+		double radius, double coefficentRest = 0
+	);
 
-		//sets the position
-		void setPosition(const double& X,const double &Y, const double & Z);
-		void getPosition(double& X, double& Y, double& Z);
+	void setMass(long double mass);
+	long double getMass() const;
 
-		//sets velocity
-		void setVelocity(const double& X,const double& Y,const double& Z);
-		void getVelocity(double& X, double& Y, double& Z);
+	void setTemp(long double temp);
+	long double getTemp() const;
 
-		//sets acceleration
-		void setAcceleration(const double & X, const double &Y,const double& Z);
-		void getAcceleration(double& X, double& Y, double& Z);
+	void setRadius(double radius);
+	double getRadius() const;
 
-		//sets the positions
-		void setXposition(const double& X);
-		void setYposition(const double& Y);
-		void setZposition(const double& Z);
+	void setPosition(double X, double Y, double Z);
+	void getPosition(double& X, double& Y, double& Z);
 
-		//gets the positipons
-		double getXposition() const;
-		double getYposition() const;
-		double getZposition() const;
+	void setVelocity(double X, double Y, double Z);
+	void getVelocity(double& X, double& Y, double& Z);
 
-		//stes velocity
-		void setXvelocity(const double& X);
-		void setYvelocity(const double& Y);
-		void setZvelocity(const double& Z);
+	void setAcceleration(double X, double Y, double Z);
+	void getAcceleration(double& X, double& Y, double& Z);
 
-		//gets the velocity 
-		double getXvelocity() const;
-		double getYvelocity() const;
-		double getZvelocity() const;
+	void setXposition(double X);
+	void setYposition(double Y);
+	void setZposition(double Z);
 
-		//sets acceleration
-		void setXacceleration(const double& X);
-		void setYacceleration(const double& Y);
-		void setZacceleration(const double& Z);
+	double getXposition() const;
+	double getYposition() const;
+	double getZposition() const;
 
-		double getXacceleration() const;
-		double getYacceleration() const;
-		double getZacceleartion() const;
+	void setXvelocity(double X);
+	void setYvelocity(double Y);
+	void setZvelocity(double Z);
 
-		//setts and gets coeffiecent of Rest
-		void setcoefficentRest(const double& coefficentRest);
-		double getCoefficentRest() const;
+	double getXvelocity() const;
+	double getYvelocity() const;
+	double getZvelocity() const;
 
+	void setXacceleration(double X);
+	void setYacceleration(double Y);
+	void setZacceleration(double Z);
 
-		sf::Vector2f transformPoint(float x, float y,const float& windowWidth,const float& windowHeight);
+	double getXacceleration() const;
+	double getYacceleration() const;
+	double getZacceleartion() const;
 
-	
-		void setCircleCenterOrigin(const double & windowX,const double& windowY);
+	void setcoefficentRest(double coefficentRest);
+	double getCoefficentRest() const;
 
-		sf::CircleShape circle;
+	sf::Vector2f transformPoint(float x, float y, float windowWidth, float windowHeight);
 
-		
+	void setCircleCenterOrigin(double windowX, double windowY);
 
-	private:
-		long double mass;
-		long double temp;
-		double coefficentRest;
-		double radius;
-		Vector3<double> position;
-		Vector3<double> velocity;
-		Vector3<double> acceleration;
+	sf::CircleShape circle;
+
+private:
+	long double mass;
+	long double temp;
+	double radius;
+	double position[3];
+	double velocity[3];
+	double acceleration[3];
+	double coefficentRest;
 };
