@@ -2,75 +2,75 @@
 #include <SFML/Graphics.hpp>
 
 class particle {
-	public:	
-		
-		//constructors
-		particle();
-		
-		particle(	double Xp, double Yp, double Zp, 
-					double Xv, double Yv, double Zv, 
-				    double Xa, double Ya, double Za,
-					long double mass, long double temp, 
-					double radius,double coefficentRest=0
-				);
+public:
 
-		void setMass(long double mass);
-		long double getMass() const;
+	//constructors
+	particle();
 
-		void setTemp(long double temp);
-		long double getTemp() const;
+	particle(double Xp, double Yp, double Zp,
+		double Xv, double Yv, double Zv,
+		double Xa, double Ya, double Za,
+		long double mass, long double temp,
+		double radius, double coefficentRest = 0
+	);
 
-		void setRadius(double radius);
-		double getRadius() const;
+	void setMass(long double mass);
+	long double getMass() const;
 
-		void setPosition(double X, double Y, double Z);
-		void getPosition(double& X, double& Y, double& Z);
+	void setTemp(long double temp);
+	long double getTemp() const;
 
-		void setVelocity(double X, double Y, double Z);
-		void getVelocity(double& X, double& Y, double& Z);
+	void setRadius(double radius);
+	double getRadius() const;
 
-		void setAcceleration(double X, double Y, double Z);
-		void getAcceleration(double& X, double& Y, double& Z);
+	void setPosition(double X, double Y, double Z);
+	void getPosition(double& X, double& Y, double& Z);
 
-		void setXposition(double X);
-		void setYposition(double Y);
-		void setZposition(double Z);
+	void setVelocity(double X, double Y, double Z);
+	void getVelocity(double& X, double& Y, double& Z);
 
-		double getXposition() const;
-		double getYposition() const;
-		double getZposition() const;
+	void setAcceleration(double X, double Y, double Z);
+	void getAcceleration(double& X, double& Y, double& Z);
 
-		void setXvelocity(double X);
-		void setYvelocity(double Y);
-		void setZvelocity(double Z);
+	void setXposition(double X);
+	void setYposition(double Y);
+	void setZposition(double Z);
 
-		double getXvelocity() const;
-		double getYvelocity() const;
-		double getZvelocity() const;
+	double getXposition() const;
+	double getYposition() const;
+	double getZposition() const;
 
-		void setXacceleration(double X);
-		void setYacceleration(double Y);
-		void setZacceleration(double Z);
+	void setXvelocity(double X);
+	void setYvelocity(double Y);
+	void setZvelocity(double Z);
 
-		double getXacceleration() const;
-		double getYacceleration() const;
-		double getZacceleartion() const;
+	double getXvelocity() const;
+	double getYvelocity() const;
+	double getZvelocity() const;
 
-		void setcoefficentRest(double coefficentRest);
-		double getCoefficentRest() const;
+	void setXacceleration(double X);
+	void setYacceleration(double Y);
+	void setZacceleration(double Z);
 
-		sf::Vector2f transformPoint(float x, float y, float windowWidth, float windowHeight);
+	double getXacceleration() const;
+	double getYacceleration() const;
+	double getZacceleartion() const;
 
-		void setCircleCenterOrigin(double windowX, double windowY);
+	void setcoefficentRest(double coefficentRest);
+	double getCoefficentRest() const;
 
-		sf::CircleShape circle;
+	sf::Vector2f transformPoint(float x, float y, float windowWidth, float windowHeight);
 
-	private:
-		long double mass;
-		long double temp;
-		double radius;
-		double position[3];
-		double velocity[3];
-		double acceleration[3];
-		double coefficentRest;
+	void setCircleCenterOrigin(double windowX, double windowY);
+
+	sf::CircleShape circle;
+
+private:
+	long double mass;
+	long double temp;
+	double radius;
+	double position[3];
+	double velocity[3];
+	double acceleration[3];
+	double coefficentRest;
 };

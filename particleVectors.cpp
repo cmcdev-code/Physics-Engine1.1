@@ -11,7 +11,7 @@ void particleVectors::drawAllParticles(sf::RenderWindow& window)
 {
     
 	for (int i = 0; i < particles.size(); i++) {
-        particles.at(i).circle.setFillColor(sf::Color(particles.at(i).getXposition()*5+30, particles.at(i).getYposition()*5+30, particles.at(i).getXposition()*10 + 10*particles.at(i).getYposition()));
+        particles.at(i).circle.setFillColor(sf::Color(particles.at(i).getXposition()*5+30, particles.at(i).getYposition()*5+30, particles.at(i).getXposition() + particles.at(i).getYposition()));
 		window.draw(particles.at(i).circle);
 	}
 	window.display();
@@ -67,10 +67,8 @@ void particleVectors::updateGravityOnParticles(const int& numberOfThreads)
                     Logic::updatePosition(particles.at(x));
                     Logic::changeAccleration(particles.at(x), 0, 0, 0);
                 }
-            }if (particles.size() > 2) {
-               
             }
-            }, start, end));
+    }  , start, end));
         start = end;
         end += workPerThread;
     }

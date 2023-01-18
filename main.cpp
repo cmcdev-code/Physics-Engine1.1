@@ -7,13 +7,11 @@ int main()
 
 
     sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(2560 * 40, 1440 * 40));
-    view.setCenter(sf::Vector2f(720.0f, 720.0f));
+    view.setCenter(sf::Vector2f(1280.0f, 720.0f));
 
     sf::RenderWindow window(sf::VideoMode(2560, 1440), "Stuff");
     while (window.isOpen())
     {
-
-
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -21,7 +19,7 @@ int main()
                 window.close();
         }
         game.pullKeyBoardEvents(window, view);
-        window.clear();
+       window.clear();
         window.setView(view);
 
         game.drawAll(window);
